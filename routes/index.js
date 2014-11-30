@@ -3,9 +3,7 @@ var resourceBundle = require('./modules/resourceBundle');
 var config = require('../config').config;
 var router = express.Router();
 
-var companies = require('../data/companies');
-
-console.log(companies);
+var companies = require('../resources/companies');
 
 /* GET home page. */
 router.get('/', function(req, res) {
