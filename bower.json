@@ -1,0 +1,20 @@
+{
+  "name": "company_map",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tejitak/",
+  "authors": [
+    "tejitak"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "vue": "~0.11.0"
+  }
+}
