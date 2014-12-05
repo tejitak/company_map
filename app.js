@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var routes = require('./routes/index');
+var wantedlyRoutes = require('./routes/wantedly');
 var config = require('./config').config;
 
 var app = express();
@@ -56,6 +57,7 @@ if (app.get('env') === 'development') {
 }
 
 app.use('/', routes);
+app.use('/wantedly', wantedlyRoutes);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
