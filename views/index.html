@@ -5,23 +5,44 @@
     <title><%=title%></title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <!--link rel="shortcut icon" href="<%=config.CONTEXT_PATH%>/favicon.ico" />
+<!--link rel="shortcut icon" href="<%=config.CONTEXT_PATH%>/favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="<%=config.CONTEXT_PATH%>/apple-touch-icon-precomposed.png"-->
     <link rel="stylesheet" href="<%=config.CONTEXT_PATH%>/css/main.css">
     <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 100% }
+        html { height: 100% }
+        body { height: 100%; margin: 0; padding: 0 }
+        #map_canvas { height: 100% }
     </style>
     <script type="text/javascript"
-      src="http://maps.googleapis.com/maps/api/js?sensor=true">
-    </script>
-    <script type="text/javascript">
-        var data = <%= data %>;
-    </script>
+    src="http://maps.googleapis.com/maps/api/js?sensor=true">
+</script>
+<script type="text/javascript">
+    var data = <%= data %>;
+</script>
 </head>
 <body id="app">
-  <div id="map_canvas" style="width:100%; height:100%"></div>
-  <script src="<%=config.CONTEXT_PATH%>/dist/main.js"></script>
+    <div>
+        <span><strong>IT Companies Map!!</strong></span>
+        <select>
+            <option>求人件数順</option>
+            <option>社員数順</option>
+        </select>
+        <select>
+            <option>渋谷</option>
+            <option>新宿</option>
+            <option>六本木</option>
+        </select>
+    </div>
+    <div style="width:100%; height:100%;">
+        <div id="map_canvas" style="float: left; height:100%;" v-style="width: selected.name ? '80%' : '100%'"></div>
+        <div>
+            <div>{{selected.name}}</div>
+            <a href="{{selected.company_url}}">{{company_url}}</a>
+            <ul v-repeat="selected.job_list">
+                <a href="{{url}}">{{title}}</a>
+            </ul>
+        </div>
+    </div>
+    <script src="<%=config.CONTEXT_PATH%>/dist/main.js"></script>
 </body>
 </html>

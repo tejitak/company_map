@@ -15,7 +15,13 @@
         data: {
             initPos: {
                 lat: 35.658517,
-                lon: 139.701334
+                lng: 139.701334
+            },
+            selected: {
+                name: "",
+                company_url: "",
+                logo_url: "",
+                job_list: []
             }
         },
 
@@ -26,8 +32,8 @@
         methods: {
             init: function(){
                 var map = this._map = new google.maps.Map(document.getElementById("map_canvas"), {
-                    center: new google.maps.LatLng(this.initPos.lat, this.initPos.lon),
-                    zoom: 14,
+                    center: new google.maps.LatLng(this.initPos.lat, this.initPos.lng),
+                    zoom: 15,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
                 this._infowin = new google.maps.InfoWindow({});
@@ -38,18 +44,27 @@
                 if(!items){ return; }
                 var that = this, map = this._map;
                 $.each(items, function(i, item){
+                    var jobCount = item.job_count;
+                    var iconSize = jobCount * 10;
                     var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(item.lat, item.lon),
+                        position: new google.maps.LatLng(item.lat, item.lng),
+                        icon: new google.maps.MarkerImage(item.logo_url, null, null, null, new google.maps.Size(iconSize, iconSize)),
+                        zIndex: i,
                         map: map
                     });
-                    google.maps.event.addListener(marker, 'click', function() {
-                        that._infowin.setContent("<div>" + item.name + "</div><div>" + item.address + "</div><div>" + item.url + "</div>");
+                    google.maps.event.addListener(marker, 'mouseover', function() {
+                        that._infowin.setContent("<div>" + item.name + "</div><div>" + item.address + "</div><div>" + item.company_url + "</div>");
                         that._infowin.open(map, marker);
+                    });
+                    google.maps.event.addListener(marker, 'mouseout', function() {
+                        that._infowin.close();
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+                        that.selected = item;
                     });
                 });
             }
         }
     });
-
     // google.maps.event.addDomListener(window, 'load', initialize);
 })(window);
