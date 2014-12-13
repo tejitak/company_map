@@ -24,14 +24,14 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('public/js/**/*.js', ['jshint', 'browserify']);
+    gulp.watch(['public/js/**/*.js', 'public/js/**/*.vue'], ['jshint', 'browserify']);
 });
 
 gulp.task('browserify', function() {
     // main page
     gulp.src('public/js/teji/company/map/main.js')
         .pipe(browserify({
-            transform: gulp.env.production ? ["debowerify", "uglifyify"] : ["debowerify"],
+            transform: gulp.env.production ? ["debowerify", "vueify", "uglifyify"] : ["debowerify", "vueify"],
             debug : !gulp.env.production
         }))
         .pipe(gulp.dest('public/dist'));

@@ -35,6 +35,9 @@
     "debowerify": "^0.9.1",
     "uglifyify": "^2.6.0",
     "run-sequence": "^1.0.1",
-    "request-debug": "^0.1.1"
+    "request-debug": "^0.1.1",
+    "insert-css": "^0.2.0",
+    "vueify": "^1.1.0",
+    "stylus": "^0.49.3"
   }
 }

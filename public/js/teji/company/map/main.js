@@ -7,22 +7,25 @@
     var Vue = require("vue");
     var $ = require("jquery");
     var util = require("../common/util");
+    var vuePopup = require("../components/popup.vue");
+    var vuePopupContent = require("../components/popupContent.vue");
 
     var app = module.exports = new Vue({
 
         el: '#app',
+
+        components: {
+            "vue-popup": vuePopup,
+            "vue-popup-content": vuePopupContent
+        },
 
         data: {
             initPos: {
                 lat: 35.658517,
                 lng: 139.701334
             },
-            selected: {
-                name: "",
-                company_url: "",
-                logo_url: "",
-                job_list: []
-            }
+            selected: null,
+            popup: {displayed: false}
         },
 
         created: function() {
@@ -61,6 +64,7 @@
                     });
                     google.maps.event.addListener(marker, 'click', function() {
                         that.selected = item;
+                        that.popup.displayed = true;
                     });
                 });
             }
