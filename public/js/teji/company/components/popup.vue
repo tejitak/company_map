@@ -21,19 +21,19 @@
 </style>
 
 <template>
-<div class="popup" v-show="displayed">
+<div class="popup">
     <content></content>
     <div class="closeWrap">
-      <a href="javascript:;" v-on="click: displayed = false" class="close" title="Close"></a>
+      <a href="javascript:;" v-on="click: close()" class="close" title="Close"></a>
     </div>
 </div>
 </template>
 
 <script>
   module.exports = {
-    data: function () {
-      return {
-        displayed: false
+    methods: {
+      close: function(){
+        this.$dispatch("popupClose");
       }
     }
   }

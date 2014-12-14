@@ -37,7 +37,7 @@
     <div id="map_canvas" style="width:100%; height:100%;"></div>
 
     <!-- components -->
-    <vue-popup v-with="popup">
+    <vue-popup v-show="selected">
         <vue-popup-content v-with="selected"></vue-popup-content>
     </vue-popup>
     <!--/ components -->

@@ -24,8 +24,7 @@
                 lat: 35.658517,
                 lng: 139.701334
             },
-            selected: null,
-            popup: {displayed: false}
+            selected: null
         },
 
         created: function() {
@@ -41,6 +40,9 @@
                 });
                 this._infowin = new google.maps.InfoWindow({});
                 this.updateMarkers(data);
+                this.$on("popupClose", function(){
+                    this.selected = null;
+                }.bind(this));
             },
 
             updateMarkers: function(items){
@@ -64,7 +66,6 @@
                     });
                     google.maps.event.addListener(marker, 'click', function() {
                         that.selected = item;
-                        that.popup.displayed = true;
                     });
                 });
             }
