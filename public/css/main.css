@@ -8,6 +8,37 @@ body {
     padding: 0;
 }
 
+.logo {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 40px;
+    bottom: 40px;
+    z-index: 100;
+}
+
+.menus {
+    display: table;
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    z-index: 100;
+    background-color: #eee;
+}
+
+.menu {
+    display: table-cell;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #aaa;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
 #map_canvas {
     width:100%;
     height:100%;

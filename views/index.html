@@ -11,17 +11,28 @@
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 </head>
 <body id="app">
-    <div>
-        <span><strong>IT Companies Map!!</strong></span>
-        <select>
-            <option>求人件数順</option>
-            <option>社員数順</option>
-        </select>
-        <select>
-            <option>渋谷</option>
-            <option>新宿</option>
-            <option>六本木</option>
-        </select>
+    <div class="logo">
+        <img src="<%=config.CONTEXT_PATH%>/img/logo.jpg">
+    </div>
+    <div class="menus">
+        <div class="menu">
+            <a href="javascript:;">ソート</a>
+            <select style="display: none;">
+                <option>求人件数順</option>
+                <option>社員数順</option>
+            </select>
+        </div>
+        <div class="menu">
+            <a href="javascript:;">カテゴリ</a>
+        </div>
+        <div class="menu">
+            <a href="javascript:;">エリア</a>
+            <select style="display: none;">
+                <option>渋谷</option>
+                <option>新宿</option>
+                <option>六本木</option>
+            </select>
+        </div>
     </div>
     <div id="map_canvas" style="width:100%; height:100%;"></div>
 
