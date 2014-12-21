@@ -1,16 +1,16 @@
 <style lang="stylus">
 .popup_content
-  .title
-    font-weight bold
-    font-size 24px
+  overflow auto
+  max-height 360px
 
   .body
-    padding 8px 0
+    padding 16px 0
+    text-align center
+
 </style>
 
 <template>
   <div class="popup_content">
-    <div class="title">{{name}}</div>
     <div class="body">
       <a href="{{company_url}}">{{company_url}}</a>
       <ul>
