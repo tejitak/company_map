@@ -43,7 +43,7 @@
                 this.updateMarkers(data);
                 this.$on("popupClose", function(){
                     this.popupOpened = false;
-                    this.selected = null;
+                    // this.selected = null;
                 }.bind(this));
             },
 
