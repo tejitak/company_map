@@ -12,10 +12,10 @@
 <template>
   <div class="popup_content">
     <div class="body">
-      <a href="{{company_url}}">{{company_url}}</a>
+      <a v-attr="href: company_url">{{company_url}}</a>
       <ul>
-        <li v-repeat="job_list">
-          <a href="{{url}}">{{title}}</a>
+        <li v-repeat="detail.job_list">
+          <a v-attr="href: url">{{title}}</a>
         </li>
       </ul>
     </div>
@@ -23,15 +23,14 @@
 </template>
 
 <script>
-  module.exports = {
+module.exports = {
     data: function () {
-      return {
-        name: "", 
-        company_url: "",
-        job_list: []
-      }
-    },
-    methods: {
+        return {
+            company_url: "",
+            detail: {
+                job_list: []
+            }
+        }
     }
-  }
+};
 </script>

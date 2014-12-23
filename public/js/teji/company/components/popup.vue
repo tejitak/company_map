@@ -5,6 +5,9 @@
     padding 20px
     border 1px solid #eee
     background-color #fff
+    
+    &.loading
+        background-color #ddd
 
     .title
         font-weight bold
@@ -24,7 +27,7 @@
 </style>
 
 <template>
-    <div class="popup">
+    <div class="popup" v-class="loading: loading">
         <div class="title">{{title}}</div>
         <content></content>
         <div class="closeWrap">
@@ -37,7 +40,8 @@
 module.exports = {
     data: function(){
         return {
-            title: ""
+            title: "",
+            loading: false
         }
     },
 
@@ -45,7 +49,7 @@ module.exports = {
 
     methods: {
         close: function(){
-            this.$dispatch("popupClose");
+            this.$dispatch("onPopupClose");
         }
     }
 };

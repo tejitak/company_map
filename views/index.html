@@ -34,11 +34,10 @@
             </select>
         </div>
     </div>
-    <div id="map_canvas" style="width:100%; height:100%;"></div>
-
+    <vue-map v-with="initPos: initPos, items: items"></vue-map>
     <!-- components -->
-    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selected.name}}">
-        <vue-popup-content v-with="selected"></vue-popup-content>
+    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.name}}" v-with="loading: loading">
+        <vue-popup-content v-with="selectedItem"></vue-popup-content>
     </vue-popup>
     <!--/ components -->
 
