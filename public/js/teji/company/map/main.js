@@ -56,7 +56,7 @@
                     complete: function(){
                         that.loading = false;
                     }
-                }); 
+                });
             });
             // TODO: replace with a real API
             setTimeout(function(){
