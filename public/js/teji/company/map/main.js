@@ -10,6 +10,7 @@
     var vuePopup = require("../components/popup.vue");
     var vuePopupContent = require("../components/popupContent.vue");
     var vueMap = require("../components/map.vue");
+    var draggable = require("../directives/draggable");
 
     Vue.config.debug = true;
 

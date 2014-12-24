@@ -36,7 +36,7 @@
     </div>
     <vue-map v-with="initPos: initPos, items: items"></vue-map>
     <!-- components -->
-    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.name}}" v-with="loading: loading">
+    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.name}}" v-with="loading: loading" v-draggable>
         <vue-popup-content v-with="selectedItem"></vue-popup-content>
     </vue-popup>
     <!--/ components -->
