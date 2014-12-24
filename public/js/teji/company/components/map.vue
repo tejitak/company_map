@@ -29,23 +29,36 @@ module.exports = {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         this._infowin = new google.maps.InfoWindow({});
-        //TODO: call updateMakers when the center position is changeds
+        google.maps.event.addListener(map, 'dragend', function(){
+            //TODO: call updateMakers when the center position is changeds
+        });
+        this._markers = new google.maps.MVCArray();
     },
 
     methods: {
         filterItems: function(){
             // TODO: impl with filters
-
+            /*var filtered = [];
+            var latlngBounds = this._map.getBounds();
+            var swLatlng = latlngBounds.getSouthWest();
+            var neLatlng = latlngBounds.getNorthEast();
+            this.items.forEach(function(item, i){
+                var lat = item.lat, lng = item.lng;
+                if(swLatlng.lat() <= lat && lat <= neLatlng.lat() && swLatlng.lng() <= lng && lng <= neLatlng.lng()){
+                    filtered.push(item);
+                }
+            });*/
             // sort by job count for z-index
 
+            // return filtered;
             return this.items;
         },
 
         refresh: function(){
             var that = this, map = this._map, items = this.items;
-            if(!items){ return; }
-            // TODO: clear maker
-
+            if(!map || !items){ return; }
+            // TODO: clear makers
+            this.clearMarkers();
             // TODO: show markers in only displayed range
             var displayedItems = this._displayedItems = this.filterItems();
             displayedItems.forEach(function(item, i){
@@ -56,6 +69,8 @@ module.exports = {
         addMaker: function(item){
             if(!item){ return; }
             var that = this, map = this._map;
+            // TODO: dup check
+
             var iconSize = item.job_count * 10;
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
@@ -73,6 +88,16 @@ module.exports = {
             google.maps.event.addListener(marker, 'click', function() {
                 that.$dispatch("onMapMarkerClick", item);
             });
+            this._markers.push(marker);
+            this._currentIds.push(item.id);
+        },
+
+        clearMarkers: function(){
+            this._currentIds = [];
+            this._markers.forEach(function(marker, i){
+                marker.setMap(null);
+            });
+            this._markers = [];
         }
     }
 }

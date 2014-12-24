@@ -4,8 +4,10 @@ var request = require('request');
 var tough = require('tough-cookie');
 var url = require('url');
 var config = require('../config').config;
-var apikey = require('../apikey');
 var router = express.Router();
+
+var apikey = {};
+try{ apikey = require('../apikey'); } catch(e) {}
 
 // for debug
 // require('request-debug')(request);
