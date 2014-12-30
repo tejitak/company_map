@@ -20,7 +20,7 @@
         <a href="javascript:;" v-on="click: postStar(detail.id)">Star</a>
       </div>
       <div>
-        star count: {{like_count}}
+        star count: {{detail.like_count}}
       </div>
     </div>
   </div>
