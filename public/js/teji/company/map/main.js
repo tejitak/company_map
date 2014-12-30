@@ -4,8 +4,8 @@
 (function(global) {
     "use strict";
     
-    var Vue = require("vue");
-    var $ = require("jquery");
+    var Vue = global.Vue = require("vue");
+    var $ = global.$ = require("jquery");
     var util = require("../common/util");
     var vuePopup = require("../components/popup.vue");
     var vuePopupContent = require("../components/popupContent.vue");

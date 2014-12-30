@@ -12,12 +12,16 @@
 <template>
   <div class="popup_content">
     <div class="body">
-      <a v-attr="href: company_url">{{company_url}}</a>
-      <ul>
-        <li v-repeat="detail.job_list">
-          <a v-attr="href: url">{{title}}</a>
-        </li>
-      </ul>
+      <div>創業年: {{detail.found_year}}</div>
+      <div>社員数: {{detail.employee_count}}</div>
+      <a v-attr="href: detail.company_url">{{detail.company_url}}</a>
+      <div>description: {{detail.description}}</div>
+      <div>
+        <a href="javascript:;" v-on="click: postStar(detail.id)">Star</a>
+      </div>
+      <div>
+        star count: {{like_count}}
+      </div>
     </div>
   </div>
 </template>
@@ -26,11 +30,26 @@
 module.exports = {
     data: function () {
         return {
-            company_url: "",
-            detail: {
-                job_list: []
-            }
+            detail: {}
         }
+    },
+
+    methods: {
+      postStar: function(id){
+        var that = this;
+        $.ajax({
+            type: "POST",
+            // url: "/api/v1/startups/:id/like",
+            url: Vue.config.debug ? "/api/v1/startups/1" : "/api/v1/startups/" + id + "/like",
+            dataType: "json",
+            cache: false,
+            success: function(res){
+              that.detail = res;
+            },
+            complete: function(){
+            }
+        });
+      }
     }
 };
 </script>
