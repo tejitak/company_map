@@ -79,8 +79,8 @@
             onChangeSelection: function(id){
                 var that = this;
                 this.loading = true;
-                var selectedItem = this.selectedItem = this.getItemById(id);
-                if(!selectedItem){ return; }
+                var item = this.selectedItem = this.getItemById(id);
+                if(!item){ return; }
                 this.popupOpened = true;
                 $.ajax({
                     type: "GET",
@@ -89,7 +89,7 @@
                     dataType: "json",
                     cache: false,
                     success: function(res){
-                        that.selectedItem.$add("detail", res || {});
+                        that.item.$add("detail", res || {});
                     },
                     complete: function(){
                         that.loading = false;
