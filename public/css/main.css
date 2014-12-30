@@ -1,22 +1,64 @@
-html {
-    height: 100%;
-}
-
 body {
-    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
+/* layout */
+.container {
+    width: 100%;
+    height: 100%;
+    -webkit-flex: 1 0 auto;
+    -moz-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+nav {
+    overflow: auto;
+    -webkit-flex: 0 0 200px;
+    -moz-flex: 0 0 200px;
+    -ms-flex: 0 0 200px;
+    flex: 0 0 200px;
+}
+
+vue-map {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+}
+
+/* logo */
 .logo {
     position: absolute;
     width: 80px;
     height: 80px;
+    top: 40px;
     left: 40px;
-    bottom: 40px;
     z-index: 100;
 }
 
+/* menus */
 .menus {
     display: table;
     position: absolute;
@@ -44,6 +86,7 @@ body {
     height:100%;
 }
 
+/* vue component animation */
 vue-popup {
     position: absolute;
     top: 100px;
@@ -59,6 +102,7 @@ vue-popup.expand-enter, vue-popup.expand-leave {
     opacity: 0;
 }
 
+/* overlay */
 .overlay {
     position: absolute;
     left: 0;

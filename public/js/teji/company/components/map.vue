@@ -30,7 +30,26 @@ module.exports = {
         var map = this._map = new google.maps.Map(document.getElementById("map_canvas"), {
             center: new google.maps.LatLng(this.initPos.lat, this.initPos.lng),
             zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                position: google.maps.ControlPosition.TOP_RIGHT
+            },
+            panControl: true,
+            panControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT
+            },
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.LARGE,
+                position: google.maps.ControlPosition.TOP_RIGHT
+            },
+            scaleControl: true,
+            streetViewControl: true,
+            streetViewControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT
+            }
         });
         this._infowin = new google.maps.InfoWindow({});
         // the center position is changed by drag
@@ -43,7 +62,6 @@ module.exports = {
         });
         // the center position is changed by selecting area or drag end
         google.maps.event.addListener(map, 'idle', function(){
-            console.log('this logs after the panTo finishes.');
             that.appendCurrentAreaMakers();
         });
         this._markers = new google.maps.MVCArray();
@@ -96,7 +114,6 @@ module.exports = {
             var that = this, map = this._map;
             // TODO: dup check
             if(this._displayedIds.indexOf(item.id) !== -1){
-                console.log("already displayed: " + item.name);
                 return;
             }
             // var iconSize = item.job_count * 10;
@@ -131,7 +148,6 @@ module.exports = {
 
         onChangeArea: function(pos){
             if(!this._map){ return; }
-            console.log("panTo");
             this._map.panTo(new google.maps.LatLng(pos.lat, pos.lng));
         }
     }

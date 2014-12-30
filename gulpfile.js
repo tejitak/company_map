@@ -34,7 +34,7 @@ gulp.task('browserify', function() {
             transform: gulp.env.production ? ["debowerify", "vueify", "uglifyify"] : ["debowerify", "vueify"],
             debug : !gulp.env.production
         }))
-        .pipe(gulp.dest('public/dist'));
+        .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('default', function(){

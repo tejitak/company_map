@@ -12,7 +12,7 @@
     var vueMap = require("../components/map.vue");
     var draggable = require("../directives/draggable");
 
-    Vue.config.debug = true;
+    Vue.config.debug = OPTION.debug;
 
     var app = module.exports = new Vue({
 
@@ -48,8 +48,8 @@
                 that.popupOpened = true;
                 $.ajax({
                     type: "GET",
-                    // TODO: temp
-                    url: "/api/v1/startups/" + 1,
+                    // https://start-map.herokuapp.com/api/v1/startups/1.json
+                    url: Vue.config.debug ? "/api/v1/startups/" + 1 : "/api/v1/startups/" + item.id + ".json",
                     dataType: "json",
                     cache: false,
                     success: function(res){
@@ -60,10 +60,10 @@
                     }
                 });
             });
-            // TODO: replace with a real API
             $.ajax({
                 type: "GET",
-                url: "/api/v1/startups/list",
+                // url: "https://start-map.herokuapp.com/api/v1/startups.json",
+                url: Vue.config.debug ? "/api/v1/startups/list" : "/api/v1/startups.json",
                 dataType: "json",
                 cache: false,
                 success: function(res){
@@ -83,4 +83,15 @@
             }
         }
     });
+    
+    // temp window size adjustment
+    var resize = function(){
+        var $win = $(window), $body = $(document.body), winH = $win.height(), $container = $(".container"), $footer = $("footer");
+        $body.height(winH);
+        $container.height(winH - $footer.height());
+    };
+    resize();
+    google.maps.event.addDomListener(window, 'load', resize);
+    $(window).on("resize", resize);
+
 })(window);

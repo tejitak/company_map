@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IT企業マップ</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+<!--link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="./apple-touch-icon-precomposed.png"-->
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+</head>
+<body id="app">
+    <div class="logo">
+        <img src="/img/logo.jpg">
+    </div>
+    <div class="menus">
+        <div class="menu">
+            <a href="javascript:;">ソート</a>
+            <select style="display: none;">
+                <option>求人件数順</option>
+                <option>社員数順</option>
+            </select>
+        </div>
+        <div class="menu">
+            <a href="javascript:;">カテゴリ</a>
+        </div>
+        <div class="menu">
+            <a href="javascript:;">エリア</a>
+            <select v-model="selectedLatLngStr" v-on="change: onChangeArea">
+                <option value="35.658517,139.701334">渋谷</option>
+                <option value="35.662836,139.731443">六本木</option>
+                <option value="35.646690,139.710106">恵比寿</option>
+                <option value="35.693840,139.703549">新宿</option>
+                <option value="35.713768,139.777254">上野</option>
+                <option value="35.443708,139.638026">横浜</option>
+                <option value="35.728926,139.710380">池袋</option>
+                <option value="35.630152,139.740440">品川</option>
+                <option value="35.626446,139.723444">五反田</option>
+            </select>
+        </div>
+    </div>
+    <div class="container">
+        <vue-map v-with="initPos: mapPos, items: items"></vue-map>
+        <nav>test</nav>
+    </div>
+    <footer>
+        footer
+    </footer>
+    <!-- components -->
+    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.name}}" v-with="loading: loading" v-draggable>
+        <vue-popup-content v-with="selectedItem"></vue-popup-content>
+    </vue-popup>
+    <!--/ components -->
+    <!-- overlay -->
+    <div class="overlay" v-show="!initialized">
+        <img class="loading" src="/img/loading.gif" width="64" height="64">
+    </div>
+    <!--/ overlay -->
+    <!-- script -->
+    <script>
+    var OPTION = {
+        debug: true
+    };
+    </script>
+    <script src="/js/main.js"></script>
+    <!--/ script -->
+</body>
+</html>
