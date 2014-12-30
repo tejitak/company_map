@@ -85,11 +85,11 @@
                 $.ajax({
                     type: "GET",
                     // https://start-map.herokuapp.com/api/v1/startups/1.json
-                    url: Vue.config.debug ? "/api/v1/startups/" + 1 : "/api/v1/startups/" + item.id + ".json",
+                    url: Vue.config.debug ? "/api/v1/startups/" + 1 : "/api/v1/startups/" + id + ".json",
                     dataType: "json",
                     cache: false,
                     success: function(res){
-                        that.item.$add("detail", res || {});
+                        that.selectedItem.$add("detail", res || {});
                     },
                     complete: function(){
                         that.loading = false;
