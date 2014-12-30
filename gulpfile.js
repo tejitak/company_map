@@ -24,7 +24,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(['public/js/**/*.js', 'public/js/**/*.vue'], ['jshint', 'browserify']);
+    gulp.watch(['public/js/teji/**/*.js', 'public/js/teji/**/*.vue'], ['jshint', 'browserify']);
 });
 
 gulp.task('browserify', function() {

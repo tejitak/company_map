@@ -14,35 +14,13 @@
     <div class="logo">
         <img src="/img/logo.jpg">
     </div>
-    <div class="menus">
-        <div class="menu">
-            <a href="javascript:;">ソート</a>
-            <select style="display: none;">
-                <option>求人件数順</option>
-                <option>社員数順</option>
-            </select>
-        </div>
-        <div class="menu">
-            <a href="javascript:;">カテゴリ</a>
-        </div>
-        <div class="menu">
-            <a href="javascript:;">エリア</a>
-            <select v-model="selectedLatLngStr" v-on="change: onChangeArea">
-                <option value="35.658517,139.701334">渋谷</option>
-                <option value="35.662836,139.731443">六本木</option>
-                <option value="35.646690,139.710106">恵比寿</option>
-                <option value="35.693840,139.703549">新宿</option>
-                <option value="35.713768,139.777254">上野</option>
-                <option value="35.443708,139.638026">横浜</option>
-                <option value="35.728926,139.710380">池袋</option>
-                <option value="35.630152,139.740440">品川</option>
-                <option value="35.626446,139.723444">五反田</option>
-            </select>
-        </div>
-    </div>
     <div class="container">
-        <vue-map v-with="initPos: mapPos, items: items"></vue-map>
-        <nav>test</nav>
+        <article>
+            <vue-map v-with="initPos: mapPos, items: items"></vue-map>
+        </article>
+        <nav>
+            <vue-tab v-with="items: items"></vue-tab>
+        </nav>
     </div>
     <footer>
         footer

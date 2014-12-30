@@ -51,7 +51,7 @@ module.exports = {
                 position: google.maps.ControlPosition.TOP_RIGHT
             }
         });
-        this._infowin = new google.maps.InfoWindow({});
+        // this._infowin = new google.maps.InfoWindow({});
         // the center position is changed by drag
         // google.maps.event.addListener(map, 'dragend', function(){
         //     that.appendCurrentAreaMakers();
@@ -124,15 +124,15 @@ module.exports = {
                 zIndex: 10,
                 map: map
             });
-            google.maps.event.addListener(marker, 'mouseover', function() {
-                that._infowin.setContent("<div>" + item.name + "</div><div>" + item.address + "</div><div>" + item.company_url + "</div>");
-                that._infowin.open(map, marker);
-            });
-            google.maps.event.addListener(marker, 'mouseout', function() {
-                that._infowin.close();
-            });
+            // google.maps.event.addListener(marker, 'mouseover', function() {
+            //     that._infowin.setContent("<div>" + item.name + "</div><div>" + item.address + "</div><div>" + item.company_url + "</div>");
+            //     that._infowin.open(map, marker);
+            // });
+            // google.maps.event.addListener(marker, 'mouseout', function() {
+            //     that._infowin.close();
+            // });
             google.maps.event.addListener(marker, 'click', function() {
-                that.$dispatch("onMapMarkerClick", item);
+                that.$dispatch("onMapMarkerClick", item.id);
             });
             this._markers.push(marker);
             this._displayedIds.push(item.id);
