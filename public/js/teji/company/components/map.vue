@@ -12,56 +12,81 @@
 <script>
 module.exports = {
     data: function () {
-      return {
-        initPos: {}, 
-        items: []
-      }
+        return {
+            initPos: {lat: 0, lng: 0}, 
+            items: []
+        }
     },
 
     created: function(){
+        this._lazy = true;
+        // google.maps.event.addDomListener(window, 'load', this.refresh);
         this.$watch("items", this.refresh);
+        this.$on("changeArea", this.onChangeArea);
     },
 
     ready: function(){
+        var that = this;
         var map = this._map = new google.maps.Map(document.getElementById("map_canvas"), {
             center: new google.maps.LatLng(this.initPos.lat, this.initPos.lng),
             zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         this._infowin = new google.maps.InfoWindow({});
-        google.maps.event.addListener(map, 'dragend', function(){
-            //TODO: call updateMakers when the center position is changeds
+        // the center position is changed by drag
+        // google.maps.event.addListener(map, 'dragend', function(){
+        //     that.appendCurrentAreaMakers();
+        // });
+        // the center position is changed by changing zoom
+        google.maps.event.addListener(map, 'zoom_changed', function() {
+            that.appendCurrentAreaMakers();
+        });
+        // the center position is changed by selecting area or drag end
+        google.maps.event.addListener(map, 'idle', function(){
+            console.log('this logs after the panTo finishes.');
+            that.appendCurrentAreaMakers();
         });
         this._markers = new google.maps.MVCArray();
+        this._displayedIds = [];
     },
 
     methods: {
         filterItems: function(){
-            // TODO: impl with filters
-            /*var filtered = [];
-            var latlngBounds = this._map.getBounds();
-            var swLatlng = latlngBounds.getSouthWest();
-            var neLatlng = latlngBounds.getNorthEast();
-            this.items.forEach(function(item, i){
-                var lat = item.lat, lng = item.lng;
-                if(swLatlng.lat() <= lat && lat <= neLatlng.lat() && swLatlng.lng() <= lng && lng <= neLatlng.lng()){
-                    filtered.push(item);
+            var filtered = [];
+            if(this._lazy){
+                var latlngBounds = this._map.getBounds();
+                if(!latlngBounds){
+                    // map is not loaded yet
+                    return [];
                 }
-            });*/
-            // sort by job count for z-index
-
-            // return filtered;
-            return this.items;
+                var swLatlng = latlngBounds.getSouthWest();
+                var neLatlng = latlngBounds.getNorthEast();
+                this.items.forEach(function(item, i){
+                    var lat = item.lat, lng = item.lng;
+                    if(swLatlng.lat() <= lat && lat <= neLatlng.lat() && swLatlng.lng() <= lng && lng <= neLatlng.lng()){
+                        filtered.push(item);
+                    }
+                });
+            }else{
+                filtered = this.items;
+            }
+            console.log("filtered");
+            console.log(filtered);
+            return filtered;
         },
 
         refresh: function(){
             var that = this, map = this._map, items = this.items;
-            if(!map || !items){ return; }
-            // TODO: clear makers
+            if(!map || !items || items.length == 0){ return; }
+            // clear makers
             this.clearMarkers();
-            // TODO: show markers in only displayed range
-            var displayedItems = this._displayedItems = this.filterItems();
-            displayedItems.forEach(function(item, i){
+            // show markers in only displayed range
+            this.appendCurrentAreaMakers();
+        },
+
+        appendCurrentAreaMakers: function(){
+            var that = this;
+            this.filterItems().forEach(function(item, i){
                 that.addMaker(item);
             });
         },
@@ -70,8 +95,12 @@ module.exports = {
             if(!item){ return; }
             var that = this, map = this._map;
             // TODO: dup check
-
-            var iconSize = item.job_count * 10;
+            if(this._displayedIds.indexOf(item.id) !== -1){
+                console.log("already displayed: " + item.name);
+                return;
+            }
+            // var iconSize = item.job_count * 10;
+            var iconSize = 48;
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(item.lat, item.lng),
                 icon: new google.maps.MarkerImage(item.logo_url, null, null, null, new google.maps.Size(iconSize, iconSize)),
@@ -89,15 +118,21 @@ module.exports = {
                 that.$dispatch("onMapMarkerClick", item);
             });
             this._markers.push(marker);
-            this._currentIds.push(item.id);
+            this._displayedIds.push(item.id);
         },
 
         clearMarkers: function(){
-            this._currentIds = [];
+            this._displayedIds = [];
             this._markers.forEach(function(marker, i){
                 marker.setMap(null);
             });
             this._markers = [];
+        },
+
+        onChangeArea: function(pos){
+            if(!this._map){ return; }
+            console.log("panTo");
+            this._map.panTo(new google.maps.LatLng(pos.lat, pos.lng));
         }
     }
 }

@@ -26,7 +26,8 @@
 
         data: {
             items: [],
-            initPos: {},
+            selectedLatLngStr: "35.658517,139.701334",
+            mapPos: {lat: 0, lng: 0},
             selectedItem: {},
             popupOpened: false,
             initialized: false,
@@ -36,7 +37,7 @@
         created: function() {
             var that = this;
             // set intial position
-            this.initPos = {lat: 35.658517, lng: 139.701334};
+            this.onChangeArea();
             this.$on("onPopupClose", function(){
                 that.popupOpened = false;
             });
@@ -48,7 +49,7 @@
                 $.ajax({
                     type: "GET",
                     // TODO: temp
-                    url: "/api/detail/" + 1,
+                    url: "/api/v1/startups/" + 1,
                     dataType: "json",
                     cache: false,
                     success: function(res){
@@ -60,14 +61,26 @@
                 });
             });
             // TODO: replace with a real API
-            setTimeout(function(){
-                that.items = data;
-                that.initialized = true;
-            }, 50);
+            $.ajax({
+                type: "GET",
+                url: "/api/v1/startups/list",
+                dataType: "json",
+                cache: false,
+                success: function(res){
+                    that.items = res;
+                },
+                complete: function(){
+                    that.initialized = true;
+                }
+            });
         },
 
         methods: {
+            onChangeArea: function(){
+                var posList = this.selectedLatLngStr.split(",");
+                var pos = this.mapPos = {lat: posList[0], lng: posList[1]};
+                this.$broadcast("changeArea", pos);
+            }
         }
     });
-    // google.maps.event.addDomListener(window, 'load', initialize);
 })(window);
