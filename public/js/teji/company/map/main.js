@@ -11,6 +11,7 @@
     var vuePopupContent = require("../components/popupContent.vue");
     var vueMap = require("../components/map.vue");
     var vueTab = require("../components/tab.vue");
+    var vueDrawer = require("../components/drawer.vue");
     var draggable = require("../directives/draggable");
 
     Vue.config.debug = OPTION.debug;
@@ -23,7 +24,8 @@
             "vue-map": vueMap,
             "vue-popup": vuePopup,
             "vue-popup-content": vuePopupContent,
-            "vue-tab": vueTab
+            "vue-tab": vueTab,
+            "vue-drawer": vueDrawer,
         },
 
         data: {
@@ -31,6 +33,7 @@
             mapPos: {lat: 0, lng: 0},
             selectedItem: {},
             popupOpened: false,
+            drawerOpened: false,
             initialized: false,
             loading: false
         },
@@ -42,29 +45,37 @@
             this.$on("onPopupClose", function(){
                 that.popupOpened = false;
             });
-            this.$on("onMapMarkerClick", this.onChangeSelection.bind(this));
-            $.ajax({
-                type: "GET",
-                // url: "https://start-map.herokuapp.com/api/v1/startups.json",
-                url: Vue.config.debug ? "/api/v1/startups/list" : "/api/v1/startups.json",
-                dataType: "json",
-                cache: false,
-                success: function(res){
-                    // sort by like_count
-                    res.sort(function(a, b){
-                        if(a.like_count < b.like_count){ return 1; }
-                        if(a.like_count > b.like_count){ return -1; }
-                        return 0;
-                    });
-                    that.items = res;
-                },
-                complete: function(){
-                    that.initialized = true;
-                }
+            this.$on("onDrawerClose", function(){
+                that.drawerOpened = false;
             });
+            this.$on("onMapMarkerClick", this.onChangeSelection.bind(this));
+            this.refresh();
         },
 
         methods: {
+            refresh: function(){
+                var that = this;
+                $.ajax({
+                    type: "GET",
+                    // url: "https://start-map.herokuapp.com/api/v1/startups.json",
+                    url: Vue.config.debug ? "/api/v1/startups/list" : "/api/v1/startups.json",
+                    dataType: "json",
+                    cache: false,
+                    success: function(res){
+                        // sort by like_count
+                        res.sort(function(a, b){
+                            if(a.like_count < b.like_count){ return 1; }
+                            if(a.like_count > b.like_count){ return -1; }
+                            return 0;
+                        });
+                        that.items = res;
+                    },
+                    complete: function(){
+                        that.initialized = true;
+                    }
+                });
+            },
+
             onChangeSelection: function(id){
                 var that = this;
                 this.loading = true;
@@ -96,6 +107,10 @@
                    return n.id === id;
                 });
                 return (arr && arr[0]) || null;
+            },
+
+            showAboutUs: function(){
+                this.drawerOpened = true;
             }
         }
     });

@@ -88,8 +88,7 @@ module.exports = {
             }else{
                 filtered = this.items;
             }
-            console.log("filtered");
-            console.log(filtered);
+            // console.log(filtered);
             return filtered;
         },
 

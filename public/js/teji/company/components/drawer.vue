@@ -1,19 +1,14 @@
 <style lang="stylus">
-.popup
-    position relative
+.drawer
+    position absolute
+    top 0
+    left 0
     width 280px
-    z-index 150
+    height 100%
+    z-index 200
     padding 20px
-    border 1px solid #eee
-    background-color #fff
+    background-color #bbb
     
-    &.loading
-        background-color #ddd
-
-    .title
-        font-weight bold
-        font-size 22px
-
     .closeWrap
         position absolute
         top 20px
@@ -28,8 +23,7 @@
 </style>
 
 <template>
-    <div class="popup" v-class="loading: loading">
-        <div class="title">{{title}}</div>
+    <div class="drawer">
         <content></content>
         <div class="closeWrap">
             <a href="javascript:;" v-on="click: close()" class="close" title="Close"></a>
@@ -41,16 +35,12 @@
 module.exports = {
     data: function(){
         return {
-            title: "",
-            loading: false
         }
     },
 
-    paramAttributes: ["title"],
-
     methods: {
         close: function(){
-            this.$dispatch("onPopupClose");
+            this.$dispatch("onDrawerClose");
         }
     }
 };

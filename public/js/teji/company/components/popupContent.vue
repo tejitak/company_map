@@ -45,8 +45,10 @@ module.exports = {
             cache: false,
             success: function(res){
               that.detail = res;
+              that.$root.refresh();
             },
             complete: function(){
+              that.$root.refresh();
             }
         });
       }

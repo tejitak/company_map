@@ -32,7 +32,7 @@
             <div><a href="javascript:;" v-on="click: selectArea(35.626446,139.723444)">五反田</a></div>
         </div>
         <div class="tabContent" v-show="selectedTab == 'star'">
-            <div v-repeat="items" v-on="click: selectStarItem(this)" v-show="$index < 50">
+            <div v-repeat="items" v-on="click: selectStarItem(this)" v-show="$index < 20">
                 <div>{{$index + 1}}: {{company_name}}</div>
                 <div>like_count: {{like_count}}</div>
             </div>
