@@ -96,7 +96,6 @@ module.exports = {
         this.$watch("items", this.refresh);
         this.$on("changeSelection", this.onChangeSelection);
         this.$on("changeArea", this.onChangeArea);
-        this.$on("initCompleted", this.resize);
     },
 
     ready: function(){
@@ -172,6 +171,7 @@ module.exports = {
         refresh: function(){
             var that = this, map = this._map, items = this.items;
             if(!map || !items || items.length == 0){ return; }
+            this.resize();
             // clear makers
             this.clearMarkers();
             // show markers in only displayed range

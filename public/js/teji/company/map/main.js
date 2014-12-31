@@ -66,7 +66,9 @@
                 that.drawerOpened = false;
             });
             this.$on("onMapMarkerClick", this.onChangeSelection.bind(this));
-            this.refresh();
+            setTimeout(function(){
+                that.refresh();
+            }, 3000);
         },
 
         methods: {
@@ -79,11 +81,11 @@
                     dataType: "json",
                     cache: false,
                     success: function(res){
+                        that.initialized = true;
                         that.items = res;
                     },
-                    complete: function(){
+                    error: function(){
                         that.initialized = true;
-                        that.$broadcast("initCompleted");
                     }
                 });
             },
