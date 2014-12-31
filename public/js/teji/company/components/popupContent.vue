@@ -12,7 +12,7 @@
 <template>
   <div class="popup_content">
     <div class="body">
-      <div>創業年: {{detail.found_year}}</div>
+      <div>創業年: {{detail.foundation_date}}</div>
       <div>社員数: {{detail.employee_count}}</div>
       <a v-attr="href: detail.company_url">{{detail.company_url}}</a>
       <div>description: {{detail.description}}</div>

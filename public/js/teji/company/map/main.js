@@ -66,9 +66,7 @@
                 that.drawerOpened = false;
             });
             this.$on("onMapMarkerClick", this.onChangeSelection.bind(this));
-            setTimeout(function(){
-                that.refresh();
-            }, 3000);
+            this.refresh();
         },
 
         methods: {
