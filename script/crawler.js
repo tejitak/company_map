@@ -73,20 +73,6 @@ function crawl(name){
                 lats = JSON.parse(lats_raw);
             }
 
-            var job_list;
-            // job_list
-            var requestJobsUrl = "https://www.wantedly.com/companies/" + name + "/projects";
-            request({url: requestUrl}, function(error, response, body) {
-                if (!error && response.statusCode == 200) {
-                    $ = cheerio.load(body);
-
-                    // 募集人数
-                    var job_lists =
-                        $("").each();
-
-                }
-            });
-
             var company = {
                 "id" : i,
                 "name" : name,
