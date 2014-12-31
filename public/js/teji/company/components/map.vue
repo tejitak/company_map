@@ -10,9 +10,9 @@
         cursor pointer
 
         img
-            border-radius 20px
-            -webkit-border-radius 20px
-            -moz-border-radius 20px
+            border-radius 18px
+            -webkit-border-radius 18px
+            -moz-border-radius 18px
             box-shadow: 0px 0px 0px 8px rgba(3,169,264,0.6);
         
         &.selected
@@ -20,8 +20,6 @@
             
             img
                 box-shadow: 0px 0px 0px 8px rgba(255,82,82,0.6);
-                
-    
 </style>
 
 <template>
@@ -93,11 +91,12 @@ module.exports = {
 
     created: function(){
         this._lazy = true;
-        this._markerSize = 40;
+        this._markerSize = 36;
 
         this.$watch("items", this.refresh);
         this.$on("changeSelection", this.onChangeSelection);
         this.$on("changeArea", this.onChangeArea);
+        this.$on("initCompleted", this.resize);
     },
 
     ready: function(){
@@ -228,6 +227,14 @@ module.exports = {
             // register one time callback
             if(cb){
                 google.maps.event.addListenerOnce(this._map, 'idle', cb);
+            }
+        },
+
+        resize: function(gLatLng){
+            var map = this._map;
+            if(map){
+                google.maps.event.trigger(map, 'resize');
+                map.setCenter(gLatLng || new google.maps.LatLng(this.initPos.lat, this.initPos.lng));
             }
         }
     }

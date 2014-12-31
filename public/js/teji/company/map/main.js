@@ -83,6 +83,7 @@
                     },
                     complete: function(){
                         that.initialized = true;
+                        that.$broadcast("initCompleted");
                     }
                 });
             },
@@ -129,19 +130,19 @@
     
     // temp window size adjustment
     var resize = function(){
-        var $win = $(window)
-        , $body = $(document.body)
-        , windowHeight = $win.height()
-        , $containers = {
+        var $win = $(window),
+        $body = $(document.body),
+        windowHeight = $win.height(),
+        $containers = {
             root: $(".container"),
             tab: [
               $("[role=tabs] [function=scroll-1]"),
               $("[role=tabs] [function=scroll-2]")
             ]
-          }
-        , $tabTrigger = $("[role=tabs] [role=tab-trigger]")
-        , $listFilter = $("[role=tabs] [role=filter]")
-        , $footer = $("footer");
+        },
+        $tabTrigger = $("[role=tabs] [role=tab-trigger]"),
+        $listFilter = $("[role=tabs] [role=filter]"),
+        $footer = $("footer");
         
         var $rootNagativeHeight = windowHeight - $footer.height();
         $body.height(windowHeight);
