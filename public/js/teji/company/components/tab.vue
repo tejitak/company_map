@@ -80,6 +80,9 @@ module.exports = {
         selectArea: function(lat, lng){
             this.$dispatch("onPopupClose");
             this.$root.onChangeArea(lat, lng);
+            if(util.isMobileScreen()){
+              this.$dispatch("onNavigationClose");
+            }
         },
 
         selectStarItem: function(item){
@@ -87,6 +90,9 @@ module.exports = {
             this.$root.onChangeArea(item.lat, item.lng, function(){
                 that.$root.onChangeSelection(item.id);
             });
+            if(util.isMobileScreen()){
+              this.$dispatch("onNavigationClose");
+            }
         }
     }
 };

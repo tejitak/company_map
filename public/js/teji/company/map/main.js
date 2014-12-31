@@ -6,7 +6,7 @@
     
     var Vue = global.Vue = require("vue");
     var $ = global.$ = require("jquery");
-    var util = require("../common/util");
+    var util = global.util = require("../common/util");
     var vuePopup = require("../components/popup.vue");
     var vuePopupContent = require("../components/popupContent.vue");
     var vueMap = require("../components/map.vue");
@@ -65,6 +65,9 @@
             });
             this.$on("onDrawerClose", function(){
                 that.drawerOpened = false;
+            });
+            this.$on("onNavigationClose", function(){
+                that.navigationOpened = false;
             });
             this.$on("onMapMarkerClick", this.onChangeSelection.bind(this));
             this.refresh();
