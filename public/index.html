@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>IT企業マップ</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
 <!--link rel="shortcut icon" href="./favicon.ico" />
     <link rel="apple-touch-icon-precomposed" href="./apple-touch-icon-precomposed.png"-->
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/view.min.css">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/view.min.css" />
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 </head>
 <body id="app">
@@ -23,9 +24,15 @@
             <vue-tab v-with="items: items"></vue-tab>
         </nav>
     </div>
-    <footer>
-        footer
-        <a href="javascript:;" v-on="click: showAboutUs()">スタートマップとは</a>
+    <footer class="component__footer">
+      <h1 class="servive-name"><i class="logo"></i><span>START MAP</span></h1>
+      <nav class="footer_navigations">
+        <a class="nav_item" v-on="click: showAboutUs" herf="javascript:void(0);">スタートマップとは</a>
+        <span class="deactive nav_item">会社を登録する</span>
+      </nav>
+      <div class="copyright">
+        <p>Copyright 2014 devMorning.</p>
+      </div>
     </footer>
     <!-- components -->
     <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.company_name}}" v-with="loading: loading" v-draggable>

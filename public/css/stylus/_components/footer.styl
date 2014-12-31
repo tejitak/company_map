@@ -1,0 +1,67 @@
+/*
+  Footer
+*/
+
+$height = 100px
+$margin-top = floor(($height * .45))px
+
+.component__footer
+  clearfix()
+  position fixed //absolute
+  left 0
+  bottom 0
+  width 100%
+  height $height
+  
+  .servive-name
+    padding 0
+    font-family robot
+    font-weight bold
+    color #484a65
+    margin-top $margin-top
+    margin-left 40px
+    margin-right 40px
+    fontsize 18px
+    letter-spacing .2em
+    float left
+    background url(/img/service_name.svg) no-repeat 0 0
+    display block
+    width 210px
+    height 30px
+    span
+      display none
+   
+
+  .footer_navigations
+    float left
+    clearfix()
+    margin-top $margin-top + 2
+    width 300px
+    a
+      trans_1(.2s)
+      &:hover
+        color #1c94c1
+        cursor pointer
+    .nav_item
+      letter-spacing .1em
+      float left
+      inline-block(.2)
+      fontsize 14px
+      font-weight bold
+      margin-right 30px
+      color #5f5f5f
+      
+      &.deactive
+        opacity .2
+      &:last-child
+        margin-right 0
+  
+  .copyright
+    float right
+    margin $margin-top + 4
+    width 240px
+    fontsize 12px
+    color #b4b3b3
+    font-family robot
+    letter-spacing .1em
+    text-align right
