@@ -117,15 +117,21 @@
         , windowHeight = $win.height()
         , $containers = {
             root: $(".container"),
-            tab:  $("[role=tabs] .tabContent")
+            tab: [
+              $("[role=tabs] [function=scroll-1]"),
+              $("[role=tabs] [function=scroll-2]")
+            ]
           }
         , $tabTrigger = $("[role=tabs] [role=tab-trigger]")
+        , $listFilter = $("[role=tabs] [role=filter]")
         , $footer = $("footer");
         
         var $rootNagativeHeight = windowHeight - $footer.height();
         $body.height(windowHeight);
+        
         $containers.root.height($rootNagativeHeight);
-        $containers.tab.height($rootNagativeHeight - $tabTrigger.height());
+        $containers.tab[0].height($rootNagativeHeight - $tabTrigger.outerHeight());
+        $containers.tab[1].height($rootNagativeHeight - $tabTrigger.outerHeight() - $listFilter.outerHeight());
     };
     resize();
     google.maps.event.addDomListener(window, 'load', resize);
