@@ -1,7 +1,7 @@
 <style lang="stylus">
 .popup
     position relative
-    width 280px
+    width 240px
     z-index 150
     padding 20px
     border 1px solid #eee

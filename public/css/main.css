@@ -86,11 +86,8 @@ vue-popup.expand-enter, vue-popup.expand-leave {
 
 /* mobile */
 @media (max-width: 768px) {
-    aside {
-        display: none;
-    }
     vue-popup {
-        left: 40px;
+        left: 20px;
         top: 40px;
     }
 }

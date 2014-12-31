@@ -19,7 +19,7 @@
       <article>
           <vue-map v-with="initPos: mapPos, items: items"></vue-map>
       </article>
-      <aside class="component__option-lists" role="tabs">
+      <aside class="component__option-lists" role="tabs" v-show="navigationOpened">
           <vue-tab v-with="items: items"></vue-tab>
       </aside>
     </div>
@@ -28,12 +28,13 @@
     <footer class="component__footer">
       <h1 class="servive-name"><i class="logo"></i><span>START MAP</span></h1>
       <nav class="footer_navigations">
-        <a class="nav_item" v-on="click: showAboutUs" herf="javascript:void(0);">スタートマップとは</a>
+        <a class="nav_item" v-on="click: toggleAboutUs" herf="javascript:void(0);">スタートマップとは</a>
         <span class="deactive nav_item">会社を登録する</span>
       </nav>
       <div class="copyright">
-        <p>Copyright 2014 devMorning.</p>
+        <p>Copyright 2014 <a href="http://devmorning.connpass.com/" target="_blank">devMorning</a>.</p>
       </div>
+      <div class="footer_menu"><a href="javascript:;" class="nav_item" v-on="click: toggleNavigation()">MENU</a></div>
     </footer>
     
     
@@ -53,7 +54,7 @@
         <h3>Develop & Design</h3>
         <div class="profile" v-repeat="creators">
           <div class="profile_photo">
-            <img src="{{img}}">
+            <img v-attr="src: img">
           </div>
           <div class="profile_body">
             <div class="profile_job">{{job}}</div>

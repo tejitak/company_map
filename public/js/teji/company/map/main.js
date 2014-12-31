@@ -34,6 +34,7 @@
             selectedItem: {},
             popupOpened: false,
             drawerOpened: false,
+            navigationOpened: !util.isMobileScreen(),
             initialized: false,
             loading: false,
             creators: [{
@@ -122,8 +123,12 @@
                 return (arr && arr[0]) || null;
             },
 
-            showAboutUs: function(){
+            toggleAboutUs: function(){
                 this.drawerOpened = !this.drawerOpened;
+            },
+
+            toggleNavigation: function(){
+                this.navigationOpened = !this.navigationOpened;
             }
         }
     });
