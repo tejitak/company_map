@@ -1,14 +1,5 @@
 <style lang="stylus">
-.drawer
-    position absolute
-    top 0
-    left 0
-    width 280px
-    height 100%
-    z-index 200
-    padding 20px
-    background-color #bbb
-    
+.drawer    
     .closeWrap
         position absolute
         top 20px

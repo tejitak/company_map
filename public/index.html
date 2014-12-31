@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>IT企業マップ</title>
+  <title>スタートマップ</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telephone=no" />
 <!--link rel="shortcut icon" href="./favicon.ico" />
@@ -14,10 +14,6 @@
 </head>
 <body id="app">
   <div v-show="initialized">
-    <div class="logo">
-      <img src="/img/logo.jpg">
-    </div>
-    
     
     <div class="component__main container">
       <article>
@@ -45,13 +41,27 @@
     <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.company_name}}" v-with="loading: loading" v-draggable>
         <vue-popup-content v-with="selectedItem"></vue-popup-content>
     </vue-popup>
-    <vue-drawer v-show="drawerOpened">
-      <div>スタートマップとは</div>
-      <div>description...</div>
+
+    <div class="component__drawer" v-component="vue-drawer" v-show="drawerOpened" v-transition="slide">
+      <div>
+        <h2>スタートマップとは</h2>
+        <section>スタートアップバブルで生まれては消える日本国内のスタートアップをマップ上に表示するアプリです。</section>
+        <section>また、STARボタンでスターを増やすことでお気に入り企業が少しだけ目立ちます。</section>
+      </div>
       <hr>
-      <div>Develop & Design</div>
-      <div>Takuya Tejima</div>
-    </vue-drawer>
+      <div>
+        <h3>Develop & Design</h3>
+        <div class="profile" v-repeat="creators">
+          <div class="profile_photo">
+            <img src="{{img}}">
+          </div>
+          <div class="profile_body">
+            <div class="profile_job">{{job}}</div>
+            <div class="profile_name">{{name}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--/ components -->
     
   </div>

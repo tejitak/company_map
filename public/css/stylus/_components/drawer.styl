@@ -1,0 +1,50 @@
+.component__drawer
+  
+    position absolute
+    top 0
+    left 0
+    transition all 0.4s ease
+    height 100%
+    width 260px
+    overflow hidden
+    display block
+    z-index 999
+    
+    gradient_main()
+    
+    &.slide-enter, &.slide-leave
+        width 0
+        
+    .drawer
+        width 220px
+        margin 72px 20px 20px
+        color #fff
+        
+    section
+        margin 20px 0
+        
+    h3
+        color #e6cecb
+        margin 20px 0
+    
+    .profile
+        height 53px
+        margin 12px 0
+            
+        .profile_photo
+            float left
+            width 50px
+            
+            img
+                width 50px
+                border-radius 25px
+                -webkit-border-radius 25px
+                -moz-border-radius 25px
+                
+        .profile_body
+            float left
+            width 146px
+            padding 12px
+            
+        .profile_job
+            color #19191a
