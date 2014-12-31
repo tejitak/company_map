@@ -1,0 +1,58 @@
+.component__list
+  clear both
+  .item
+    color #fff
+    list-style-type none
+    a, dl
+      color #fff
+      display block
+      border-bottom .99px solid rgba(255,255,255,.1)
+      padding 15px 10px
+      text-decoration none
+      trans_1(.4s)
+      fontsize 14px
+      cursor pointer
+      &:hover
+        border-bottom-color rgb(255, 255, 255, .4)
+        background rgba(0,0,0,.1)
+
+    .ranking
+      display none
+
+.tabArea
+  .component__list
+    .item > a
+      padding-left 20px
+
+.tabCompany
+  .component__list
+    .item
+      dl
+        clearfix()
+        position relative
+        padding-bottom 5px
+        padding-top 23px
+        
+        dt
+          padding-right 50px
+          padding-left 10px
+          float left
+          overflow hidden
+          .company-name
+            width 100%
+            display block
+            font-weight normal
+            fontsize 12px
+            overflow hidden
+            white-space nowrap
+            text-overflow ellipsis
+            height 30px
+
+        dd
+          text-align right
+          position absolute
+          right 5px
+          padding-right 10px
+          width 80px
+          fontsize 10px
+          color #e0ff50

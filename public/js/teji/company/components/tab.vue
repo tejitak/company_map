@@ -12,28 +12,46 @@
 </style>
 
 <template>
-    <div class="tab" v-class="">
-        <header class="title-wrap" role="tab-trigger">
-          <nav>
-            <div class="title" v-class="Selected: selectedTab == 'area'"><a href="javascript:;" v-on="click: selectedTab = 'area'">エリア</a></div>
-            <div class="title" v-class="Selected: selectedTab == 'star'"><a href="javascript:;" v-on="click: selectedTab = 'star'">スター</a></div>
-          </nav>
-        </header>
-        
-        <div class="tabContent" v-show="selectedTab == 'area'">
-          <div v-repeat="locations">
-            <a href="javascript:;" v-on="click: selectArea(lat, lng)">{{name}}</a>
-          </div>
-        </div>
-        
-        <div class="tabContent" v-show="selectedTab == 'star'">
-          Filter <input type="text" v-model="searchText">
-          <div v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 20">
-            <div>{{$index + 1}}: {{company_name}}</div>
-            <div>like_count: {{like_count}}</div>
-          </div>
-        </div>
-    </div>
+  <div class="tab component__tab" v-class="">
+    <header class="tabHeader title-wrap" role="tab-trigger">
+      <nav>
+        <div class="tab-trigger title" v-class="Selected: selectedTab == 'area'"><a href="javascript:;" v-on="click: selectedTab = 'area'">エリア</a></div>
+        <div class="tab-trigger title" v-class="Selected: selectedTab == 'star'"><a href="javascript:;" v-on="click: selectedTab = 'star'">企業</a></div>
+      </nav>
+    </header>
+
+    <section class="tabContent tabArea" v-show="selectedTab == 'area'">
+      <ul class="component__list" function="scroll-1">
+        <li class="item" v-repeat="locations">
+          <a href="javascript:;" v-on="click: selectArea(lat, lng)">{{name}}</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="tabContent tabCompany" v-show="selectedTab == 'star'">
+
+      <header class="component__filter" role="filter">
+        <label for="filter-input">Filter</label>
+        <input id="filter-input" type="text" placeholder="Company Name..." v-model="searchText" />
+      </header>
+
+      <ul class="component__list" function="scroll-2">
+        <li class="item" v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 20">
+          <dl>
+            <dt>
+              <span class="ranking">{{$index + 1}}:</span>
+              <strong class="company-name">{{company_name}}</strong>
+            </dt>
+            <dd>
+              <i>★</i>
+              <strong class="like-count">{{like_count}}</strong>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+
+    </section>
+  </div>
 </template>
 
 <script>
