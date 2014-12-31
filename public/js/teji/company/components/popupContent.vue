@@ -40,7 +40,7 @@ module.exports = {
         if(this._requesting){ return; }
         this._requesting = true;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: Vue.config.debug ? "/api/v1/startups/1" : "/api/v1/startups/" + id + "/like",
             dataType: "json",
             cache: false,
