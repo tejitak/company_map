@@ -98,15 +98,14 @@ module.exports = {
 
     ready: function(){
         var that = this;
+        var MY_MAPTYPE_ID = 'StartMap_style';
+
         var map = this._map = new google.maps.Map(document.getElementById("map_canvas"), {
             center: new google.maps.LatLng(this.initPos.lat, this.initPos.lng),
             zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            mapTypeControl: true,
-            mapTypeControlOptions: {
-                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                position: google.maps.ControlPosition.TOP_RIGHT
-            },
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeId: MY_MAPTYPE_ID,
+            mapTypeControl: false,
             panControl: true,
             panControlOptions: {
                 position: google.maps.ControlPosition.TOP_RIGHT
@@ -122,11 +121,15 @@ module.exports = {
                 position: google.maps.ControlPosition.TOP_RIGHT
             }
         });
-        // this._infowin = new google.maps.InfoWindow({});
-        // the center position is changed by drag
-        // google.maps.event.addListener(map, 'dragend', function(){
-        //     that.appendCurrentAreaMakers();
-        // });
+        var customMapType = new google.maps.StyledMapType([{
+                "stylers": [{"hue": "#0069b2"}, {"saturation": -70}],
+                "elementType": "all",
+                "featureType": "all"
+            }], {
+                name: 'Start Map'
+            }
+        );
+        map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
         // the center position is changed by changing zoom
         google.maps.event.addListener(map, 'zoom_changed', function() {
             that.appendCurrentAreaMakers();
@@ -188,16 +191,7 @@ module.exports = {
             }
             var ms = this._markerSize;
             var gLatLng = new google.maps.LatLng(item.lat, item.lng);
-            // var marker = new google.maps.Marker({
-            //     position: gLatLng,
-            //     icon: new google.maps.MarkerImage(item.logo_url,
-            //         null,
-            //         null,
-            //         new google.maps.Point(ms / 2, ms / 2),
-            //         new google.maps.Size(ms, ms)),
-            //     zIndex: item.like_count,
-            //     map: map
-            // });
+            // var marker = new google.maps.Marker({position: gLatLng, icon: new google.maps.MarkerImage(item.logo_url, null, null, new google.maps.Point(ms / 2, ms / 2), new google.maps.Size(ms, ms)), zIndex: item.like_count, map: map});
             var marker = new CustomMarker({position: gLatLng, map: map, imagePath: item.logo_url, width: ms, height: ms});
 
             google.maps.event.addListener(marker, 'click', function() {
@@ -219,13 +213,9 @@ module.exports = {
             // set selected class to custom marker
             var index = this._displayedIds.indexOf(id);
             if(index === -1 || !this._markers[index]){ return; }
-            var that = this;
-            // temp fix to call after icon draw
-            // setTimeout(function(){
-                that._markers.forEach(function(marker, i){
-                    marker.setSelected(i === index);
-                });
-            // }, 50);
+            this._markers.forEach(function(marker, i){
+                marker.setSelected(i === index);
+            });
         },
 
         onChangeArea: function(pos, cb){
