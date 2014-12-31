@@ -106,7 +106,7 @@ module.exports = {
 
         var map = this._map = new google.maps.Map(document.getElementById("map_canvas"), {
             center: new google.maps.LatLng(this.initPos.lat, this.initPos.lng),
-            zoom: 16,
+            zoom: util.isMobileScreen() ? 17 : 16,
             // mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeId: MY_MAPTYPE_ID,
             mapTypeControl: false,

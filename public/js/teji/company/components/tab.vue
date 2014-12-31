@@ -36,7 +36,7 @@
       </header>
 
       <ul class="component__list" function="scroll-2">
-        <li class="item" v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 20">
+        <li class="item" v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 50">
           <dl>
             <dt>
               <span class="ranking">{{$index + 1}}:</span>
@@ -67,11 +67,12 @@ module.exports = {
                 {lat: 35.662836, lng: 139.731443, name: "六本木"},
                 {lat: 35.646690, lng: 139.710106, name: "恵比寿"},
                 {lat: 35.693840, lng: 139.703549, name: "新宿"},
-                {lat: 35.713768, lng: 139.777254, name: "上野"},
-                {lat: 35.443708, lng: 139.638026, name: "横浜"},
+                {lat: 35.466188, lng: 139.622715, name: "横浜"},
                 {lat: 35.728926, lng: 139.710380, name: "池袋"},
                 {lat: 35.630152, lng: 139.740440, name: "品川"},
-                {lat: 35.626446, lng: 139.723444, name: "五反田"}
+                {lat: 35.626446, lng: 139.723444, name: "五反田"},
+                {lat: 34.702485, lng: 135.495951, name: "大阪"},
+                {lat: 33.591346, lng: 130.39906, name: "福岡"}
             ]
         }
     },
