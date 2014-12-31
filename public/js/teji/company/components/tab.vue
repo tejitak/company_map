@@ -1,6 +1,6 @@
 <style lang="stylus">
 .tab
-    .titleWrap
+    .title-wrap
         display table
         
     .title
@@ -8,29 +8,30 @@
         font-weight bold
         font-size 22px
         padding 10px 20px
-        
-    .tabContent
-        overflow auto
 
 </style>
 
 <template>
     <div class="tab" v-class="">
-        <div class="titleWrap">
+        <header class="title-wrap" role="tab-trigger">
+          <nav>
             <div class="title" v-class="Selected: selectedTab == 'area'"><a href="javascript:;" v-on="click: selectedTab = 'area'">エリア</a></div>
             <div class="title" v-class="Selected: selectedTab == 'star'"><a href="javascript:;" v-on="click: selectedTab = 'star'">スター</a></div>
-        </div>
+          </nav>
+        </header>
+        
         <div class="tabContent" v-show="selectedTab == 'area'">
-            <div v-repeat="locations">
-                <a href="javascript:;" v-on="click: selectArea(lat, lng)">{{name}}</a>
-            </div>
+          <div v-repeat="locations">
+            <a href="javascript:;" v-on="click: selectArea(lat, lng)">{{name}}</a>
+          </div>
         </div>
+        
         <div class="tabContent" v-show="selectedTab == 'star'">
-            Filter <input type="text" v-model="searchText">
-            <div v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 20">
-                <div>{{$index + 1}}: {{company_name}}</div>
-                <div>like_count: {{like_count}}</div>
-            </div>
+          Filter <input type="text" v-model="searchText">
+          <div v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 20">
+            <div>{{$index + 1}}: {{company_name}}</div>
+            <div>like_count: {{like_count}}</div>
+          </div>
         </div>
     </div>
 </template>
