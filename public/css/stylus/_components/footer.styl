@@ -57,8 +57,9 @@ $margin-top = floor(($height * .4))px
         margin-right 0
   
   .copyright
-    float right
-    margin $margin-top + 4
+    position absolute
+    right 32px
+    top 48px
     width 240px
     fontsize 12px
     color #b4b3b3
@@ -81,6 +82,14 @@ $margin-top = floor(($height * .4))px
 
       &:hover
         color #1c94c1
+  
+  .social_container
+    position absolute
+    right 32px
+    top 20px
+
+    .social_item
+      display inline-block
       
 @media (max-width: 768px)
   .component__footer
@@ -116,3 +125,6 @@ $margin-top = floor(($height * .4))px
       position absolute
       top 12px
       right 16px
+      
+    .social_container
+      display none      

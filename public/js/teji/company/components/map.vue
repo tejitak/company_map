@@ -33,6 +33,7 @@ function CustomMarker(options) {
     this._imagePath = o.imagePath;
     this._w = o.width;
     this._h = o.height;
+    this._zIndex = o.zIndex;
     this.setMap(o.map);
 }
 
@@ -46,6 +47,7 @@ CustomMarker.prototype.draw = function() {
         // div.style.width = this._w + 4 + "px";
         // div.style.height = this._h + 4 + "px";
         div.className = "customMarker";
+        div.style.zIndex = this._zIndex;
         var img = document.createElement("img");
         img.src = this._imagePath;
         img.width = this._w;
@@ -195,7 +197,7 @@ module.exports = {
             var ms = this._markerSize;
             var gLatLng = new google.maps.LatLng(item.lat, item.lng);
             // var marker = new google.maps.Marker({position: gLatLng, icon: new google.maps.MarkerImage(item.logo_url, null, null, new google.maps.Point(ms / 2, ms / 2), new google.maps.Size(ms, ms)), zIndex: item.like_count, map: map});
-            var marker = new CustomMarker({position: gLatLng, map: map, imagePath: item.logo_url, width: ms, height: ms});
+            var marker = new CustomMarker({position: gLatLng, map: map, imagePath: item.logo_url, width: ms, height: ms, zIndex: item.like_count});
 
             google.maps.event.addListener(marker, 'click', function() {
                 that.$dispatch("onMapMarkerClick", item.id);
