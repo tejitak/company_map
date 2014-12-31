@@ -62,12 +62,6 @@
                     dataType: "json",
                     cache: false,
                     success: function(res){
-                        // sort by like_count
-                        res.sort(function(a, b){
-                            if(a.like_count < b.like_count){ return 1; }
-                            if(a.like_count > b.like_count){ return -1; }
-                            return 0;
-                        });
                         that.items = res;
                     },
                     complete: function(){

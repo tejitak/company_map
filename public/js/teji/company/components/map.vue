@@ -20,7 +20,6 @@ module.exports = {
 
     created: function(){
         this._lazy = true;
-        // google.maps.event.addDomListener(window, 'load', this.refresh);
         this.$watch("items", this.refresh);
         this.$on("changeArea", this.onChangeArea);
     },

@@ -21,18 +21,13 @@
             <div class="title" v-class="Selected: selectedTab == 'star'"><a href="javascript:;" v-on="click: selectedTab = 'star'">スター</a></div>
         </div>
         <div class="tabContent" v-show="selectedTab == 'area'">
-            <div><a href="javascript:;" v-on="click: selectArea(35.658517,139.701334)">渋谷</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.662836,139.731443)">六本木</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.646690,139.710106)">恵比寿</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.693840,139.703549)">新宿</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.713768,139.777254)">上野</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.443708,139.638026)">横浜</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.728926,139.710380)">池袋</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.630152,139.740440)">品川</a></div>
-            <div><a href="javascript:;" v-on="click: selectArea(35.626446,139.723444)">五反田</a></div>
+            <div v-repeat="locations">
+                <a href="javascript:;" v-on="click: selectArea(lat, lng)">{{name}}</a>
+            </div>
         </div>
         <div class="tabContent" v-show="selectedTab == 'star'">
-            <div v-repeat="items" v-on="click: selectStarItem(this)" v-show="$index < 20">
+            Filter <input type="text" v-model="searchText">
+            <div v-repeat="items | orderBy 'like_count' -1 | filterBy searchText in company_name" v-on="click: selectStarItem(this)" v-show="$index < 20">
                 <div>{{$index + 1}}: {{company_name}}</div>
                 <div>like_count: {{like_count}}</div>
             </div>
@@ -46,7 +41,19 @@ module.exports = {
         return {
             title: "",
             selectedTab: "area",
-            items: []
+            searchText: "",
+            items: [],
+            locations: [
+                {lat: 35.658517, lng: 139.701334, name: "渋谷"},
+                {lat: 35.662836, lng: 139.731443, name: "六本木"},
+                {lat: 35.646690, lng: 139.710106, name: "恵比寿"},
+                {lat: 35.693840, lng: 139.703549, name: "新宿"},
+                {lat: 35.713768, lng: 139.777254, name: "上野"},
+                {lat: 35.443708, lng: 139.638026, name: "横浜"},
+                {lat: 35.728926, lng: 139.710380, name: "池袋"},
+                {lat: 35.630152, lng: 139.740440, name: "品川"},
+                {lat: 35.626446, lng: 139.723444, name: "五反田"}
+            ]
         }
     },
 
