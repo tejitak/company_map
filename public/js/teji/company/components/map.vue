@@ -10,13 +10,17 @@
         cursor pointer
 
         img
-            border 2px solid blue
+            border-radius 20px
+            -webkit-border-radius 20px
+            -moz-border-radius 20px
+            box-shadow: 0px 0px 0px 8px rgba(3,169,264,0.6);
         
         &.selected
             z-index 9999 
             
             img
-                border 2px solid red
+                box-shadow: 0px 0px 0px 8px rgba(255,82,82,0.6);
+                
     
 </style>
 
@@ -89,7 +93,7 @@ module.exports = {
 
     created: function(){
         this._lazy = true;
-        this._markerSize = 48;
+        this._markerSize = 40;
 
         this.$watch("items", this.refresh);
         this.$on("changeSelection", this.onChangeSelection);
