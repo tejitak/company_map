@@ -117,9 +117,20 @@
     
     // temp window size adjustment
     var resize = function(){
-        var $win = $(window), $body = $(document.body), winH = $win.height(), $container = $(".container"), $footer = $("footer");
-        $body.height(winH);
-        $container.height(winH - $footer.height());
+        var $win = $(window)
+        , $body = $(document.body)
+        , windowHeight = $win.height()
+        , $containers = {
+            root: $(".container"),
+            tab:  $("[role=tabs] .tabContent")
+          }
+        , $tabTrigger = $("[role=tabs] [role=tab-trigger]")
+        , $footer = $("footer");
+        
+        var $rootNagativeHeight = windowHeight - $footer.height();
+        $body.height(windowHeight);
+        $containers.root.height($rootNagativeHeight);
+        $containers.tab.height($rootNagativeHeight - $tabTrigger.height());
     };
     resize();
     google.maps.event.addDomListener(window, 'load', resize);
