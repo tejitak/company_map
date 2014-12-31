@@ -37,18 +37,20 @@ module.exports = {
     methods: {
       postStar: function(id){
         var that = this;
+        if(this._requesting){ return; }
+        this._requesting = true;
         $.ajax({
-            type: "POST",
-            // url: "/api/v1/startups/:id/like",
+            type: "GET",
             url: Vue.config.debug ? "/api/v1/startups/1" : "/api/v1/startups/" + id + "/like",
             dataType: "json",
             cache: false,
             success: function(res){
               that.detail = res;
-              that.$root.refresh();
+              // increment count in client side to update star ranking
+              that.$root.getItemById(id).like_count++;
             },
             complete: function(){
-              that.$root.refresh();
+              that._requesting = false;
             }
         });
       }

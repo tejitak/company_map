@@ -58,16 +58,10 @@
                 $.ajax({
                     type: "GET",
                     // url: "https://start-map.herokuapp.com/api/v1/startups.json",
-                    url: Vue.config.debug ? "/api/v1/startups/list" : "/api/v1/startups.json",
+                    url: Vue.config.debug ? "/api/v1/startups/list" : "/api/v1/startups.json?sort=like_count",
                     dataType: "json",
                     cache: false,
                     success: function(res){
-                        // sort by like_count
-                        res.sort(function(a, b){
-                            if(a.like_count < b.like_count){ return 1; }
-                            if(a.like_count > b.like_count){ return -1; }
-                            return 0;
-                        });
                         that.items = res;
                     },
                     complete: function(){
@@ -90,6 +84,7 @@
                     cache: false,
                     success: function(res){
                         that.selectedItem.$add("detail", res || {});
+                        that.$broadcast("changeSelection", id);
                     },
                     complete: function(){
                         that.loading = false;
@@ -97,9 +92,9 @@
                 });
             },
 
-            onChangeArea: function(lat, lng){
+            onChangeArea: function(lat, lng, cb){
                 var pos = this.mapPos = {lat: lat, lng: lng};
-                this.$broadcast("changeArea", pos);
+                this.$broadcast("changeArea", pos, cb);
             },
 
             getItemById: function(id){
