@@ -59,12 +59,15 @@ module.exports = {
 
     methods: {
         selectArea: function(lat, lng){
+            this.$dispatch("onPopupClose");
             this.$root.onChangeArea(lat, lng);
         },
 
         selectStarItem: function(item){
-            this.$root.onChangeSelection(item.id);
-            this.$root.onChangeArea(item.lat, item.lng);
+            var that = this;
+            this.$root.onChangeArea(item.lat, item.lng, function(){
+                that.$root.onChangeSelection(item.id);
+            });
         }
     }
 };

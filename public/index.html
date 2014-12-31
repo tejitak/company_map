@@ -11,33 +11,35 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 </head>
 <body id="app">
-    <div class="logo">
-        <img src="/img/logo.jpg">
+    <div v-show="initialized">
+        <div class="logo">
+            <img src="/img/logo.jpg">
+        </div>
+        <div class="container">
+            <article>
+                <vue-map v-with="initPos: mapPos, items: items"></vue-map>
+            </article>
+            <nav>
+                <vue-tab v-with="items: items"></vue-tab>
+            </nav>
+        </div>
+        <footer>
+            footer
+            <a href="javascript:;" v-on="click: showAboutUs()">スタートマップとは</a>
+        </footer>
+        <!-- components -->
+        <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.company_name}}" v-with="loading: loading" v-draggable>
+            <vue-popup-content v-with="selectedItem"></vue-popup-content>
+        </vue-popup>
+        <vue-drawer v-show="drawerOpened">
+            <div>スタートマップとは</div>
+            <div>description...</div>
+            <hr>
+            <div>Develop & Design</div>
+            <div>Takuya Tejima</div>
+        </vue-drawer>
+        <!--/ components -->    
     </div>
-    <div class="container">
-        <article>
-            <vue-map v-with="initPos: mapPos, items: items"></vue-map>
-        </article>
-        <nav>
-            <vue-tab v-with="items: items"></vue-tab>
-        </nav>
-    </div>
-    <footer>
-        footer
-        <a href="javascript:;" v-on="click: showAboutUs()">スタートマップとは</a>
-    </footer>
-    <!-- components -->
-    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.company_name}}" v-with="loading: loading" v-draggable>
-        <vue-popup-content v-with="selectedItem"></vue-popup-content>
-    </vue-popup>
-    <vue-drawer v-show="drawerOpened">
-        <div>スタートマップとは</div>
-        <div>description...</div>
-        <hr>
-        <div>Develop & Design</div>
-        <div>Takuya Tejima</div>
-    </vue-drawer>
-    <!--/ components -->
     <!-- overlay -->
     <div class="overlay" v-show="!initialized">
         <img class="loading" src="/img/loading.gif" width="64" height="64">
