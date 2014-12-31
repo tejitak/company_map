@@ -1,6 +1,7 @@
 node_modules/
 bower_components/
 data/
+public/js/main.js
 .DS_Store
 npm-debug.log
 apikey.js
