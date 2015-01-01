@@ -14,7 +14,7 @@
       box-shadow 0 0 0 8px rgba(3,169,264,0.6)
 
     &.selected
-      z-index 9999
+      z-index 9999 !important
       img
         box-shadow 0 0 0 8px rgba(255,82,82,0.6)
 </style>
@@ -80,6 +80,19 @@ CustomMarker.prototype.setSelected = function(selected) {
     }
 };
 
+// hide all default info window
+(function fixInfoWindow() {
+    var set = google.maps.InfoWindow.prototype.set;
+    google.maps.InfoWindow.prototype.set = function(key, val) {
+        if (key === "map") {
+            if (! this.get("noSupress")) {
+                return;
+            }
+        }
+        set.apply(this, arguments);
+    }
+})();
+
 module.exports = {
     data: function () {
         return {
@@ -122,12 +135,19 @@ module.exports = {
                 position: google.maps.ControlPosition.TOP_RIGHT
             }
         });
-        var customMapType = new google.maps.StyledMapType([{
+        var customMapType = new google.maps.StyledMapType([
+            {
                 "stylers": [{"hue": "#0069b2"}, {"saturation": -70}],
                 "elementType": "all",
                 "featureType": "all"
+            }, {
+                "featureType": "poi",
+                "elementType": "labels",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
             }], {
-                name: 'Start Map'
+                "name": 'Start Map'
             }
         );
         map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
