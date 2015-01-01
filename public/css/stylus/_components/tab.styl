@@ -1,5 +1,6 @@
 .component__tab
-
+  width 300px
+  overflow hidden
   .tabHeader
     height 80px
     width 100%
@@ -33,6 +34,9 @@
         fontsize 13px
         color #adadad
         position relative
+        @extend .navigation-hover
+        
+          
 
       &.Selected
         a

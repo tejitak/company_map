@@ -1,0 +1,160 @@
+.component__map-view
+  .customMarker
+    trans_bounce(.4s)
+    cursor pointer
+    &:hover
+      transform scale(1.4)
+    
+    &.selected
+      transform scale(1.2)
+      z-index 10000
+
+
+vue-popup
+  position absolute
+  top 100px
+  left 100px
+  height 300px
+  display block
+  trans_bounce(.1s)
+
+  &.expand-enter
+    opacity 0
+    transform scale(.97) translateX(-10px)
+
+  &.expand-leave
+    transform scale(.97) translateX(-10px)
+    opacity 0
+
+@media (max-width: 768px)
+  vue-popup
+    left 40px
+    top 40px
+
+.component__popup
+  position relative
+  width 240px
+  height 300px
+  z-index 150
+  background-color #fff
+  border-radius $radius_mini
+  box-shadow 0 0 2px 0 $border_basic
+  &.loading
+    background-color #ddd
+
+  .close
+    @extend .button-close
+    background-image url(/img/icon-close-mini.svg)
+    width 10px
+    height 10px
+
+  .title
+    font-weight bold
+    fontsize 12px
+    color #252525
+    text-align center
+    padding 15px 35px 12px 0
+    margin 0
+    border-bottom .99px solid $border_basic
+    letter-spacing .09em
+    
+    span
+      margin 0 10px
+      display block
+
+  .closeWrap
+    position absolute
+    top 18px
+    right 18px
+
+  .popup_content
+    
+    .scroll_container
+      padding 20px 15px 20px 15px
+      overflow auto
+      height 160px
+    
+    .company_data
+      color #549bcd
+      font-weight bold
+      clearfix()
+
+      .item
+        float left
+        clearfix()
+        margin-right 10px
+        .label
+          float left
+          margin-right 5px
+        .count
+          float left
+
+    .goto-url
+      display block
+      float right
+      .icon
+        background url(/img/icon-goto.svg)
+        width 10px
+        height 10px
+        display block
+
+    .description
+      margin-top 15px
+      fontsize 12px
+      line-height 1.7em
+    
+    .stars
+      text-align center
+      background #484a65
+      padding 15px 15px 10px 15px
+      border-radius 0 0 $radius_mini $radius_mini
+      .add_star
+        cancel-button()
+        padding 10px 15px 6px 10px
+        width 60%
+        border-radius $radius_mini
+        margin 0 auto 10px auto
+        box-shadow 0 0 1px .5px #000
+        background #fff
+        trans_bounce()
+        fontsize 11px
+        font-family 'Robot'
+        font-weight bold
+        cursor pointer
+        .icon
+          display inline-block
+          width 18px
+          height 18px
+          background url(/img/icon-add-star.svg)
+          position relative
+          top 1px
+          margin-right 5px
+          trans_bounce(1s)
+        span
+          position relative
+          top -4px
+          font-family 'Robot Light'
+          color #999
+        &:hover
+          box-shadow 0 0 10px -4px #000
+          border-radius 2px
+          transform scale(1.02)
+          background #e0ff50
+          .icon
+            transform rotate(360deg)
+          span
+            color #333
+        &:active
+          background #ececec
+        
+      .star_count
+        text-align center
+        color #e0ff50
+        margin 0
+        .star
+          display inline-block
+          inline-block(.09em)
+        .count
+          display inline-block
+          inline-block(.09em)
+          margin-left 10px

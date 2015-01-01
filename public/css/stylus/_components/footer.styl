@@ -13,6 +13,8 @@ $margin-top = floor(($height * .4))px
   width 100%
   height $height
   z-index $z-index_middle
+  background #fff
+
   .servive-name
     padding 0
     font-family robot
@@ -38,10 +40,7 @@ $margin-top = floor(($height * .4))px
     margin-top $margin-top + 2
     width 300px
     a
-      trans_1(.2s)
-      &:hover
-        color #1c94c1
-        cursor pointer
+      @extend .navigation-hover
     .nav_item
       letter-spacing .1em
       float left
@@ -58,10 +57,10 @@ $margin-top = floor(($height * .4))px
   
   .copyright
     position absolute
-    right 32px
-    top 48px
+    right 27px
+    top 44px
     width 240px
-    fontsize 12px
+    fontsize 11px
     color #b4b3b3
     font-family robot
     letter-spacing .1em
@@ -86,10 +85,13 @@ $margin-top = floor(($height * .4))px
   .social_container
     position absolute
     right 32px
-    top 20px
+    top 18px
 
     .social_item
       display inline-block
+      &.twitter
+        position relative
+        top -2px
       
 @media (max-width: 768px)
   .component__footer

@@ -1,25 +1,22 @@
 <style lang="stylus">
 #map_canvas
-    width 100%
-    height 100%
-    
-    .customMarker
-        border none
-        position absolute
-        padding-Left 0px
-        cursor pointer
+  width 100%
+  height 100%
 
-        img
-            border-radius 18px
-            -webkit-border-radius 18px
-            -moz-border-radius 18px
-            box-shadow: 0px 0px 0px 8px rgba(3,169,264,0.6);
-        
-        &.selected
-            z-index 9999 
-            
-            img
-                box-shadow: 0px 0px 0px 8px rgba(255,82,82,0.6);
+  .customMarker
+    border none
+    position absolute
+    padding-left 0
+    cursor pointer
+
+    img
+      border-radius 100%
+      box-shadow 0 0 0 8px rgba(3,169,264,0.6)
+
+    &.selected
+      z-index 9999 !important
+      img
+        box-shadow 0 0 0 8px rgba(255,82,82,0.6)
 </style>
 
 <template>
@@ -83,6 +80,19 @@ CustomMarker.prototype.setSelected = function(selected) {
     }
 };
 
+// hide all default info window
+(function fixInfoWindow() {
+    var set = google.maps.InfoWindow.prototype.set;
+    google.maps.InfoWindow.prototype.set = function(key, val) {
+        if (key === "map") {
+            if (! this.get("noSupress")) {
+                return;
+            }
+        }
+        set.apply(this, arguments);
+    }
+})();
+
 module.exports = {
     data: function () {
         return {
@@ -125,12 +135,19 @@ module.exports = {
                 position: google.maps.ControlPosition.TOP_RIGHT
             }
         });
-        var customMapType = new google.maps.StyledMapType([{
+        var customMapType = new google.maps.StyledMapType([
+            {
                 "stylers": [{"hue": "#0069b2"}, {"saturation": -70}],
                 "elementType": "all",
                 "featureType": "all"
+            }, {
+                "featureType": "poi",
+                "elementType": "labels",
+                "stylers": [
+                    { "visibility": "off" }
+                ]
             }], {
-                name: 'Start Map'
+                "name": 'Start Map'
             }
         );
         map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
@@ -197,7 +214,10 @@ module.exports = {
             var ms = this._markerSize;
             var gLatLng = new google.maps.LatLng(item.lat, item.lng);
             // var marker = new google.maps.Marker({position: gLatLng, icon: new google.maps.MarkerImage(item.logo_url, null, null, new google.maps.Point(ms / 2, ms / 2), new google.maps.Size(ms, ms)), zIndex: item.like_count, map: map});
-            var marker = new CustomMarker({position: gLatLng, map: map, imagePath: item.logo_url, width: ms, height: ms, zIndex: item.like_count});
+
+            // TEMP: replace default logo image
+            var logo = item.logo_url == "https://dubpy8abnqmkw.cloudfront.net/images/anonymous/anonymous-company.png" ? "/img/marker_default_small.png" : item.logo_url;
+            var marker = new CustomMarker({position: gLatLng, map: map, imagePath: logo, width: ms, height: ms, zIndex: item.like_count});
 
             google.maps.event.addListener(marker, 'click', function() {
                 that.$dispatch("onMapMarkerClick", item.id);

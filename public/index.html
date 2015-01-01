@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns#  article: http://ogp.me/ns/article#">
   <meta charset="UTF-8">
-  <title>スタートマップ</title>
+  <title>START MAPS beta - スタートマップ</title>
+  <meta property="og:title" content="START MAPS beta" >
+  <meta property="og:type" content="product" />
+  <meta property="og:description" content="日本国内・主要都市のスタートアップ・ベンチャー企業をGoogle Maps上に可視化してみたアプリケーションです。" />
+  <meta property="og:url" content="http://startmap.info/" />
+  <meta property="og:image" content="http://startmap.info/img/ogp-image.png?201401012100" />
+  <meta property="og:site_name" content="START MAPS - スタートマップ" />
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telephone=no" />
-<!--link rel="shortcut icon" href="./favicon.ico" />
-  <link rel="apple-touch-icon-precomposed" href="./apple-touch-icon-precomposed.png"-->
+  <link rel="shortcut icon" href="/favicon.ico?201401012100" />
+  <!--link rel="apple-touch-icon-precomposed" href="./apple-touch-icon-precomposed.png"-->
   <link href="//fonts.googleapis.com/css?family=Roboto:400,300,700" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="/css/main.css?201412311930" />
-  <link rel="stylesheet" href="/css/view.min.css?201412311930" />
+  <link rel="stylesheet" href="/css/main.css?201401012100" />
+  <link rel="stylesheet" href="/css/view.min.css?201401012100" />
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 </head>
 <body id="app">
   <div v-show="initialized">
     
     <div class="component__main container">
-      <article>
-          <vue-map v-with="initPos: mapPos, items: items"></vue-map>
+      <article class="component__map-view">
+        <vue-map v-with="initPos: mapPos, items: items"></vue-map>
       </article>
       <aside class="component__option-lists" role="tabs" v-show="navigationOpened">
-          <vue-tab v-with="items: items"></vue-tab>
+        <vue-tab v-with="items: items"></vue-tab>
       </aside>
     </div>
     
@@ -32,11 +38,11 @@
         <span class="deactive nav_item">会社を登録する</span>
       </nav>
       <div class="copyright">
-        <p>Copyright 2014 <a href="http://devmorning.connpass.com/" target="_blank">devMorning</a>.</p>
+        <p>Copyright 2015 <a href="http://devmorning.connpass.com/" target="_blank">devMorning</a>.</p>
       </div>
       <div class="footer_menu"><a href="javascript:;" class="nav_item" v-on="click: toggleNavigation()">MENU</a></div>
       <div class="social_container">
-          <div class="social_item">
+          <div class="social_item twitter">
               <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://startmap.info/" data-via="" data-lang="en">Tweet</a>
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
@@ -60,26 +66,15 @@
         <vue-popup-content v-with="selectedItem"></vue-popup-content>
     </vue-popup>
 
-    <div class="component__drawer" v-component="vue-drawer" v-show="drawerOpened" v-transition="slide" style="display: none:">
-      <div>
-        <h2>スタートマップとは</h2>
-        <section>スタートアップバブルで生まれては消える日本国内のスタートアップをマップ上に表示するアプリです。</section>
-        <section>また、STARボタンでスターを増やすことでお気に入り企業が少しだけ目立ちます。</section>
-      </div>
-      <hr>
-      <div>
-        <h3>Develop & Design</h3>
-        <div class="profile" v-repeat="creators">
-          <div class="profile_photo">
-            <img v-attr="src: img">
-          </div>
-          <div class="profile_body">
-            <div class="profile_job">{{job}}</div>
-            <div class="profile_name">{{name}}</div>
-          </div>
+    <div class="component__drawer" v-component="vue-drawer" v-show="drawerOpened" v-transition="slide">
+      <section class="about layout_section">
+        <h2 class="heading-2">スタートマップとは</h2>
+        <div class="descriptions">
+          <p>スタートアップバブルで生まれては消える日本国内のスタートアップをマップ上に表示するアプリです。</p>
+          <p>また、STARボタンでスターを増やすことでお気に入り企業が少しだけ目立ちます。</p>
         </div>
-      </div>
-      <div class="social_container">
+        <!--
+        <div class="social_container">
           <div class="social_item">
               <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://startmap.info/" data-via="" data-lang="en">Tweet</a>
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -95,7 +90,21 @@
             }(document, 'script', 'facebook-jssdk'));</script>
             <div class="fb-like" data-href="http://startmap.info/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
           </div>
-      </div>
+          -->
+      </section>
+      
+      <section class="members layout_section last">
+        <h3 class="heading-3">Develop &amp; Design</h3>
+        <dl class="profile" v-repeat="creators">
+          <dt class="profile_photo">
+            <img v-attr="src: img" />
+          </dt>
+          <dd class="profile_body">
+            <p class="profile_job">{{job}}</p>
+            <p class="profile_name">{{name}}</p>
+          </dd>
+        </dl>
+      </section>
     </div>
     <!--/ components -->
     
@@ -103,8 +112,11 @@
   <!-- /initialized -->
   
   <!-- overlay -->
-  <div class="overlay" v-show="!initialized">
-    <img class="loading" src="/img/loading.gif" width="64" height="64">
+  <div class="overlay component__preloader" v-if="!initialized" v-transition="expand">
+    <div class="loader">
+      <img src="/img/service_logo_top.svg?201401012100" class="logo-top" />
+      <img src="/img/service_logo_bottom.svg?201401012100" class="logo-bottom" />
+    </div>
   </div>
   <!--/ overlay -->
     
@@ -114,7 +126,7 @@
       debug: true
   };
   </script>
-  <script src="/js/main.js?201412311930"></script>
+  <script src="/js/main.js?201401012100"></script>
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

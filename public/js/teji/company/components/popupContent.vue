@@ -1,27 +1,31 @@
-<style lang="stylus">
-.popup_content
-  overflow auto
-  max-height 360px
-
-  .body
-    padding 16px 0
-    text-align center
-
-</style>
-
 <template>
   <div class="popup_content">
-    <div class="body">
-      <div>創業年: {{detail.foundation_date}}</div>
-      <div>社員数: {{detail.employee_count}}</div>
-      <a v-attr="href: detail.company_url">{{detail.company_url}}</a>
-      <div>description: {{detail.description}}</div>
-      <div>
-        <a href="javascript:;" v-on="click: postStar(detail.id)">Star</a>
+    <div class="scroll_container" function="scroll">
+      <div class="company_data">
+        <dl class="item">
+          <dt class="hidden">創業年</dt>
+          <dd class="count">{{detail.foundation_date}}設立</dd>
+        </dl>
+        <dl class="item">
+          <dt class="label">社員数</dt>
+          <dd class="count">{{detail.employee_count}}</dd>
+        </dl>
+        <a v-attr="href: detail.company_url" target="_blank" class="goto-url"><i class="icon"></i></a>
       </div>
-      <div>
-        star count: {{detail.like_count}}
+
+      <div class="description" v-show="detail.description">
+        <p>
+          {{detail.description}}
+        </p>
       </div>
+    </div>
+    
+    <div class="stars">
+      <button class="add_star" v-on="click: postStar(detail.id)"><i class="icon"></i><span>STAR</span></button>
+      <figure class="star_count">
+        <figcaption class="star">★</figcaption>
+        <strong class="count">{{detail.like_count}}</strong>
+      </figure>
     </div>
   </div>
 </template>
