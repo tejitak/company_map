@@ -3,17 +3,6 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="レイヤー_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 y="0px" viewBox="0 0 105.6 56" enable-background="new 0 0 105.6 56" xml:space="preserve">
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="51.0669" y1="12.3691" x2="51.0669" y2="29.3268">
-	<stop  offset="0" style="stop-color:#0000CC;stop-opacity:0.3"/>
-	<stop  offset="1.764286e-02" style="stop-color:#0000C6;stop-opacity:0.2947"/>
-	<stop  offset="0.2156" style="stop-color:#00008B;stop-opacity:0.2353"/>
-	<stop  offset="0.4063" style="stop-color:#000059;stop-opacity:0.1781"/>
-	<stop  offset="0.5848" style="stop-color:#000032;stop-opacity:0.1246"/>
-	<stop  offset="0.7485" style="stop-color:#000017;stop-opacity:7.545595e-02"/>
-	<stop  offset="0.892" style="stop-color:#000006;stop-opacity:3.238717e-02"/>
-	<stop  offset="1" style="stop-color:#000000;stop-opacity:0"/>
-</linearGradient>
-<polygon fill="url(#SVGID_1_)" points="62.4,8.6 51.1,8.6 51.1,8.6 39.7,8.6 24.3,37.7 51.1,37.7 51.1,37.7 77.8,37.7 "/>
 <g>
 	<path fill="#F2F2F2" d="M4.3,40.2c0-0.3-0.1-0.5-0.3-0.7c-0.2-0.2-0.5-0.3-0.8-0.5c-0.3-0.1-0.6-0.3-1-0.4c-0.4-0.1-0.7-0.3-1-0.5
 		s-0.6-0.5-0.8-0.8c-0.2-0.3-0.3-0.7-0.3-1.2c0-0.4,0.1-0.8,0.2-1.1c0.1-0.3,0.4-0.6,0.6-0.8c0.3-0.2,0.6-0.4,1-0.5
