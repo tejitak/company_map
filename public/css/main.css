@@ -51,25 +51,9 @@ footer {
 /* move to _component/map-view */
 
 /* overlay */
-.overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    background: #000;
-    opacity: 0.6;
-    filter: alpha(opacity=60);
-}
+/* move to _components/preloader */
 
-.overlay .loading {
-    width: 64px;
-    height: 64px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -32px 0 0 -32px;
-}
+
 
 /* mobile */
 @media (max-width: 768px) {

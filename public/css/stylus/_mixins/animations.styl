@@ -38,10 +38,18 @@ trans_homeslide(s=1.0)
 adminListHover()
   transform translateX(2px)
 
-@keyframes signin
+@keyframes fade-in
   0%
     opacity 0
-    transform translateY(-30px)
   100%
     opacity 1
-    transform translateY(0px)
+@keyframes bound
+  0%
+    opacity .2
+    transform translateY(-10px)
+  50%
+    opacity 1
+    transform translateY(0)
+  100%
+    opacity .2
+    transform translateY(-10px)

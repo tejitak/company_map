@@ -106,8 +106,11 @@
   <!-- /initialized -->
   
   <!-- overlay -->
-  <div class="overlay" v-show="!initialized">
-    <img class="loading" src="/img/loading.gif" width="64" height="64">
+  <div class="overlay component__preloader" v-if="!initialized" v-transition="expand">
+    <div class="loader">
+      <img src="/img/service_logo_top.svg" class="logo-top" />
+      <img src="/img/service_logo_bottom.svg" class="logo-bottom" />
+    </div>
   </div>
   <!--/ overlay -->
     

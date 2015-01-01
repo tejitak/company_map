@@ -1,0 +1,39 @@
+.component__preloader
+  position absolute
+  left 0
+  top 0
+  gradient_main()
+  height 100%
+  width 100%
+  z-index 9999
+  trans_1()
+  &.expand-enter
+    opacity 0
+  &.expand-leave
+    opacity 0
+
+  .loader
+    width (720/2)px
+    height (480/2)px
+    display block
+    margin 0 auto
+    text-align center
+    position absolute
+    top 50%
+    left 50%
+    margin-left (@width/2 *-1) px
+    margin-top (@height/2 *-1) px
+    animation fade-in 2s
+    
+    .logo-top
+      width 44px
+      height 70px
+      margin 0 auto
+      position relative
+      margin-bottom -25px
+      animation bound 3s
+      animation-timing-function cubic-bezier(.49,-0.56,.33,1.41)
+      animation-iteration-count infinite
+    .logo-bottom
+      position relative
+      left 5px
