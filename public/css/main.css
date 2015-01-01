@@ -52,13 +52,3 @@ footer {
 
 /* overlay */
 /* move to _components/preloader */
-
-
-
-/* mobile */
-@media (max-width: 768px) {
-    vue-popup {
-        left: 20px;
-        top: 40px;
-    }
-}
