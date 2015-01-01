@@ -80,6 +80,19 @@ CustomMarker.prototype.setSelected = function(selected) {
     }
 };
 
+// hide all default info window
+(function fixInfoWindow() {
+    var set = google.maps.InfoWindow.prototype.set;
+    google.maps.InfoWindow.prototype.set = function(key, val) {
+        if (key === "map") {
+            if (! this.get("noSupress")) {
+                return;
+            }
+        }
+        set.apply(this, arguments);
+    }
+})();
+
 module.exports = {
     data: function () {
         return {
