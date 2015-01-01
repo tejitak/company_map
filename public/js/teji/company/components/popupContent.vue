@@ -3,25 +3,33 @@
   overflow auto
   max-height 360px
 
-  .body
-    padding 16px 0
-    text-align center
 
 </style>
 
 <template>
   <div class="popup_content">
-    <div class="body">
-      <div>創業年: {{detail.foundation_date}}</div>
-      <div>社員数: {{detail.employee_count}}</div>
+    <div class="company_data">
+      <dl>
+        <dt class="hidden">創業年</dt>
+        <dd>{{detail.foundation_date}}設立</dd>
+      </dl>
+      <dl>
+        <dt>社員数</dt>
+        <dd>{{detail.employee_count}}</dd>
+      </dl>
       <a v-attr="href: detail.company_url">{{detail.company_url}}</a>
-      <div>description: {{detail.description}}</div>
-      <div>
-        <a href="javascript:;" v-on="click: postStar(detail.id)">Star</a>
-      </div>
-      <div>
-        star count: {{detail.like_count}}
-      </div>
+    </div>
+    
+    <div class="description" v-show="detail.description">
+      {{detail.description}}
+    </div>
+    
+    <div class="stars">
+      <button class="add_star" v-on="click: postStar(detail.id)">Star</button>
+      <figure class="star_count">
+        <figcaption class="star">★</figcaption>
+        <strong>{{detail.like_count}}</strong>
+      </figure>
     </div>
   </div>
 </template>

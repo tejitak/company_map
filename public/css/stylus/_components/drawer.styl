@@ -29,19 +29,7 @@
       right 20px
 
     .close
-      display block
-      width 20px
-      height 20px
-      background-repeat no-repeat
-      background-image url(/img/icon-close.svg)
-      trans_inOutBack(.6s)
-
-      &:hover
-        transform rotate(180deg)
-        opacity .5
-      &:active
-        transform rotate(-180deg)
-        opacity 1
+      @extend .button-close
 
   .layout_section
     margin 20px 0
