@@ -214,7 +214,10 @@ module.exports = {
             var ms = this._markerSize;
             var gLatLng = new google.maps.LatLng(item.lat, item.lng);
             // var marker = new google.maps.Marker({position: gLatLng, icon: new google.maps.MarkerImage(item.logo_url, null, null, new google.maps.Point(ms / 2, ms / 2), new google.maps.Size(ms, ms)), zIndex: item.like_count, map: map});
-            var marker = new CustomMarker({position: gLatLng, map: map, imagePath: item.logo_url, width: ms, height: ms, zIndex: item.like_count});
+
+            // TEMP: replace default logo image
+            var logo = item.logo_url == "https://dubpy8abnqmkw.cloudfront.net/images/anonymous/anonymous-company.png" ? "/img/marker_default_small.png" : item.logo_url;
+            var marker = new CustomMarker({position: gLatLng, map: map, imagePath: logo, width: ms, height: ms, zIndex: item.like_count});
 
             google.maps.event.addListener(marker, 'click', function() {
                 that.$dispatch("onMapMarkerClick", item.id);
