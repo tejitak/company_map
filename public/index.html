@@ -91,7 +91,7 @@
         <h3 class="heading-3">Develop &amp; Design</h3>
         <dl class="profile" v-repeat="creators">
           <dt class="profile_photo">
-            <img src="{{img}}" />
+            <img v-attr="src: img" />
           </dt>
           <dd class="profile_body">
             <p class="profile_job">{{job}}</p>
