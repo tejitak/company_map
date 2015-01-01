@@ -1,25 +1,22 @@
 <style lang="stylus">
 #map_canvas
-    width 100%
-    height 100%
-    
-    .customMarker
-        border none
-        position absolute
-        padding-Left 0px
-        cursor pointer
+  width 100%
+  height 100%
 
-        img
-            border-radius 18px
-            -webkit-border-radius 18px
-            -moz-border-radius 18px
-            box-shadow: 0px 0px 0px 8px rgba(3,169,264,0.6);
-        
-        &.selected
-            z-index 9999 
-            
-            img
-                box-shadow: 0px 0px 0px 8px rgba(255,82,82,0.6);
+  .customMarker
+    border none
+    position absolute
+    padding-left 0
+    cursor pointer
+
+    img
+      border-radius 100%
+      box-shadow 0 0 0 8px rgba(3,169,264,0.6)
+
+    &.selected
+      z-index 9999
+      img
+        box-shadow 0 0 0 8px rgba(255,82,82,0.6)
 </style>
 
 <template>

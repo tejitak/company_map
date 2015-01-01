@@ -16,11 +16,11 @@
   <div v-show="initialized">
     
     <div class="component__main container">
-      <article>
-          <vue-map v-with="initPos: mapPos, items: items"></vue-map>
+      <article class="component__map-view">
+        <vue-map v-with="initPos: mapPos, items: items"></vue-map>
       </article>
       <aside class="component__option-lists" role="tabs" v-show="navigationOpened">
-          <vue-tab v-with="items: items"></vue-tab>
+        <vue-tab v-with="items: items"></vue-tab>
       </aside>
     </div>
     
