@@ -12,6 +12,7 @@
     var vueMap = require("../components/map.vue");
     var vueTab = require("../components/tab.vue");
     var vueDrawer = require("../components/drawer.vue");
+    var vueAddCompany = require("../components/add-company.vue");
     var draggable = require("../directives/draggable");
 
     Vue.config.debug = OPTION.debug;
@@ -25,7 +26,8 @@
             "vue-popup": vuePopup,
             "vue-popup-content": vuePopupContent,
             "vue-tab": vueTab,
-            "vue-drawer": vueDrawer
+            "vue-drawer": vueDrawer,
+            "vue-add-company": vueAddCompany
         },
 
         data: {
@@ -34,6 +36,7 @@
             selectedItem: {},
             popupOpened: false,
             drawerOpened: false,
+            addCompanyModalOpened: false,
             navigationOpened: !util.isMobileScreen(),
             initialized: false,
             loading: false,
@@ -60,6 +63,9 @@
             var that = this;
             // set intial position
             this.onChangeArea(35.658517, 139.701334);
+            this.$on("onAddCompanyModalClose", function(){
+                that.addCompanyModalOpened = false;
+            });
             this.$on("onPopupClose", function(){
                 that.popupOpened = false;
             });
@@ -128,6 +134,10 @@
 
             toggleAboutUs: function(){
                 this.drawerOpened = !this.drawerOpened;
+            },
+          
+            toggleAddCompanyModal: function(){
+                this.addCompanyModalOpened = !this.drawerOpened;
             },
 
             toggleNavigation: function(){
