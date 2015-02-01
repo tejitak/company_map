@@ -33,7 +33,7 @@ module.exports = {
 
   methods: {
     close: function(){
-      this.$dispatch("onDrawerClose");
+      this.$dispatch("onAddCompanyModalClose");
     }
   }
 };

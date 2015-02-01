@@ -137,7 +137,7 @@
             },
           
             toggleAddCompanyModal: function(){
-                this.addCompanyModalOpened = !this.drawerOpened;
+                this.addCompanyModalOpened = !this.addCompanyModalOpened;
             },
 
             toggleNavigation: function(){
