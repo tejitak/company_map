@@ -66,7 +66,7 @@
         <vue-popup-content v-with="selectedItem"></vue-popup-content>
     </vue-popup>
     
-    <vue-add-company v-transition="expand" v-show="addCompanyModalOpened"></vue-add-company>
+    <vue-add-company class="add-company Component__modal" v-transition="modal" v-show="addCompanyModalOpened"></vue-add-company>
     
     
     <div class="component__drawer" v-component="vue-drawer" v-show="drawerOpened" v-transition="slide">

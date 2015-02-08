@@ -1,7 +1,8 @@
 <template>
-  <section class="add-company modal">
-    
-    <div class="add-company__content">
+  <section class="addcompany-content modal-content">
+    <i class="modal-overlay" v-on="click: close()"></i>
+    <div class="modal-body">
+      <!-- ここにモーダルの中身をいれるんじゃ -->
       <div class="form__content">
         <dl class="input-line">
           <dt class="label">URL</dt>
@@ -16,11 +17,12 @@
         <button class="submit ok">追加する</button>
         <button class="submit cancel">キャンセル</button>
       </div>
+      <div class="closeWrap">
+        <a href="javascript:;" v-on="click: close()" class="close" title="Close"></a>
+      </div>
     </div>
     
-    <div class="closeWrap">
-      <a href="javascript:;" v-on="click: close()" class="close" title="Close"></a>
-    </div>
+    
   </section>
 </template>
 
