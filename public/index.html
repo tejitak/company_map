@@ -35,7 +35,7 @@
       <h1 class="servive-name"><i class="logo"></i><span>START MAP</span></h1>
       <nav class="footer_navigations">
         <a class="nav_item" v-on="click: toggleAboutUs" herf="javascript:void(0);">スタートマップとは</a>
-        <span class="deactive nav_item">会社を登録する</span>
+        <a class="nav_item" v-on="click: toggleAddCompanyModal" href="javascript:void(0);">会社を登録する</a>
       </nav>
       <div class="copyright">
         <p>Copyright 2015 <a href="http://devmorning.connpass.com/" target="_blank">devMorning</a>.</p>
@@ -62,10 +62,13 @@
     
     
     <!-- components -->
-    <vue-popup v-show="popupOpened" v-transition="expand" title="{{selectedItem.company_name}}" v-with="loading: loading" v-draggable>
+    <vue-popup v-show="popupOpened" v-transition="expand" url="{{selectedItem.url}}" title="{{selectedItem.company_name}}" v-with="loading: loading" v-draggable>
         <vue-popup-content v-with="selectedItem"></vue-popup-content>
     </vue-popup>
-
+    
+    <vue-add-company class="add-company Component__modal" v-transition="modal" v-show="addCompanyModalOpened"></vue-add-company>
+    
+    
     <div class="component__drawer" v-component="vue-drawer" v-show="drawerOpened" v-transition="slide">
       <section class="about layout_section">
         <h2 class="heading-2">スタートマップとは</h2>
