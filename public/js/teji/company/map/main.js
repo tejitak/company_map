@@ -112,7 +112,9 @@
                     cache: false,
                     success: function(res){
                         that.selectedItem.$add("detail", res || {});
+                        that.selectedItem.$add("url", that.selectedItem.detail.company_url || '');
                         that.$broadcast("changeSelection", id);
+                        console.log([that.selectedItem.url]);
                     },
                     complete: function(){
                         that.loading = false;
