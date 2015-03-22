@@ -13,6 +13,7 @@
     var vueTab = require("../components/tab.vue");
     var vueDrawer = require("../components/drawer.vue");
     var vueAddCompany = require("../components/add-company.vue");
+    //var vueAddCompanyForm = require("../components/add-company.vue");
     var draggable = require("../directives/draggable");
 
     Vue.config.debug = OPTION.debug;
@@ -27,7 +28,8 @@
             "vue-popup-content": vuePopupContent,
             "vue-tab": vueTab,
             "vue-drawer": vueDrawer,
-            "vue-add-company": vueAddCompany
+            "vue-add-company": vueAddCompany/*,
+            "vue-add-company-form": vueAddCompanyForm*/
         },
 
         data: {
