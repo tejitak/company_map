@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title>会社登録</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script type="text/javascript" src="statmap.js"></script>
+  <body>
+    <h1>会社登録</h1>
+    Company Name: <input type="text" id="com_name"> </br>
+    URL: <input type="text" id="com_url"> </br>
+    Address :  <input type="text" value = "千葉家船橋市" id="com_address"> </br>
+    <input type="button" value="confirm"  onclick=statmap()>
+    <input type="button" value="submit"  onclick=register()>
+    <div id="a"></div>
+    <ul id="input"></ul>
+    <div id="statmap"><img /></div>
+  </body>
+</html>
