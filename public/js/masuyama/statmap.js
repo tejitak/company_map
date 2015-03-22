@@ -40,8 +40,9 @@ function register(){
       }
       console.log(api_request)
       var host = "http://localhost:8088/"
-      var opt = "api/v1/startups"
+      var opt = "api/v1/startmaps"
       var posturl = host + opt
+      console.log(["post:startmaps:", posturl]);
       $.post(posturl,
         api_request,
         function(data){
