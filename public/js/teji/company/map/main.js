@@ -39,19 +39,19 @@
             loading: false,
             creators: [{
                 name: "Takuya Tejima",
-                img: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpa1/v/t1.0-1/p320x320/14587_10152497392850662_1401841658995934034_n.jpg?oh=a71bf5418ca7a50fc8d0055fb1f26ba1&oe=55350919&__gda__=1430056742_4ca41af22ca52c6ec937e320ff719429",
+                img: "http://graph.facebook.com/10152855301715662/picture?type=normal",
                 job: "Developer"
             },{
                 name: "Kon Yuichi",
-                img: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/v/t1.0-1/c17.17.216.216/548983_673147119381101_1888795259_n.jpg?oh=3f044dbfd5f81912908bc215013c98ec&oe=553E5BD5&__gda__=1429938135_705f713a342b331c9fa24d5f82044122",
+                img: "http://graph.facebook.com/1050754738287002/picture?type=normal",
                 job: "Developer"
             },{
                 name: "Tsuyoshi Higuchi",
-                img: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p320x320/10622902_10152773737576554_3100748931420217045_n.jpg?oh=6bddcad5161cde9c029e764f0d867ef4&oe=54FCA3C6&__gda__=1428908990_4df25b3f352d79699aabcea69ee978fa",
+                img: "http://graph.facebook.com/10153344340466554/picture?type=normal",
                 job: "Designer"
             },{
                 name: "Yoshimitsu Torii",
-                img: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/v/t1.0-1/p320x320/1653847_656899447711039_2131191181_n.jpg?oh=78fb722168df0a0539d90a361cf17faa&oe=553D1EB3&__gda__=1429691033_9ca9d0de3a0ceb97ff9b63045de8616b",
+                img: "http://graph.facebook.com/100001729692331/picture?type=normal",
                 job: "Developer"
             }]
         },
