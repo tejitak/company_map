@@ -1,6 +1,7 @@
 node_modules/
 bower_components/
 data/
+resources/company_ids.js
 public/js/main.js
 .DS_Store
 npm-debug.log

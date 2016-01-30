@@ -20,7 +20,7 @@ function outputFunc(){
     }
 };
 
-function crawl(name){
+function crawl(name, cb){
     i++;  //counter
     var requestUrl = "https://www.wantedly.com/companies/" + name + "/info";
     request({url: requestUrl}, function(error, response, body) {
@@ -80,15 +80,18 @@ function crawl(name){
                 "address" : address,
                 "logo_url" : logo_url,
                 "company_url" : company_url,
-                "job_count": job_count || null,
-                "employee_count": employee_count || null,
+                "job_count": job_count ? job_count - 0 : 0,
+                "employee_count": employee_count ? employee_count - 0 : 0,
                 "foundation_date": foundation_date || null,
-                "about_me": about_me || null,
+                "about_me": about_me || '',
                 "lat": (lats)?lats.lat: null,
                 "lng": (lats)?lats.lng: null
             };
-            output.push( company );
+            if (company.lat) {
+                output.push( company );
+            }
             outputFunc();
+            cb()
         }
 
         else {
@@ -106,10 +109,11 @@ function crawl(name){
 function sleep(x) {
     return function(func) {
         setTimeout(function() {
-            console.warn(i + company_ids[x]);
-            crawl(company_ids[x]);
-            func();
-        }, 500);
+            console.warn(i + ':' + company_ids[x]);
+            crawl(company_ids[x], function() {
+                func();
+            });
+        }, 1000);
     }
 }
 
