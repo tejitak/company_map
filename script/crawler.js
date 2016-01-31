@@ -89,8 +89,9 @@ function crawl(name, cb){
             };
             if (company.lat) {
                 output.push( company );
+                // outputFunc();
+                console.log(JSON.stringify(company))
             }
-            outputFunc();
             cb()
         }
 
@@ -109,7 +110,7 @@ function crawl(name, cb){
 function sleep(x) {
     return function(func) {
         setTimeout(function() {
-            console.warn(i + ':' + company_ids[x]);
+            // console.warn(i + '　:　' + company_ids[x]);
             crawl(company_ids[x], function() {
                 func();
             });
